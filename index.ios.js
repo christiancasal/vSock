@@ -7,9 +7,27 @@ import {
   Navigator,
 } from 'react-native';
 
+import {createStore} from 'redux'
+let store = createStore(todos, ['Use Redux'])
+
 import Start from './app/components/views/Start'
 
 class virtualSock extends Component {
+
+  _todos(state = [], action){
+    switch(action.type){
+      case 'START':
+        return state.concat([action.text])
+      default:
+        return state
+    }
+  }
+
+  store.dispatch({
+    type:'START',
+
+  })
+
 
   _renderScene(route, navigator){
     if(route.index === 'Start'){
@@ -26,6 +44,7 @@ class virtualSock extends Component {
       />
     );
   }
+
 }
 
 

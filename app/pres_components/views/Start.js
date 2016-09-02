@@ -8,6 +8,8 @@ import {
   TabBarIOS
 } from 'react-native';
 
+import {createStore} from 'redux';
+
 import Home from './homeView/Home'
 import Settings from './settingsView/Settings'
 import Log from './logView/Log'
