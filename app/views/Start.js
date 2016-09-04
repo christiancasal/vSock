@@ -8,7 +8,7 @@ import {
   TabBarIOS
 } from 'react-native';
 
-import {createStore} from 'redux';
+// import {createStore} from 'redux';
 
 import Home from './homeView/Home'
 import Settings from './settingsView/Settings'
@@ -26,9 +26,9 @@ export default class Start extends Component {
 
   _toNavigator(route){
     // debugger;
-    // this.props.navigator.push({
-    //   index: route
-    // })
+    this.props.navigator.push({
+      index: route
+    })
   }
 
   _renderContent(renderPage){
