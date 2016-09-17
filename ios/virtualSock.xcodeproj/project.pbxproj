@@ -20,7 +20,6 @@
 		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		140ED2AC1D01E1AD002B40FF /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		AA02D5791D8D0690005472D7 /* GoogleAppUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA02D5781D8D0690005472D7 /* GoogleAppUtilities.framework */; };
@@ -38,9 +37,15 @@
 		AA47EC2D1D8CF84C00882227 /* GoogleSignIn.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA47EC281D8CF84C00882227 /* GoogleSignIn.framework */; };
 		AA47EC2E1D8CF84C00882227 /* GoogleSymbolUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA47EC291D8CF84C00882227 /* GoogleSymbolUtilities.framework */; };
 		AA47EC2F1D8CF84C00882227 /* GoogleUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA47EC2A1D8CF84C00882227 /* GoogleUtilities.framework */; };
-		AA47EC351D8CFA7100882227 /* RNGoogleSignin.m in Sources */ = {isa = PBXBuildFile; fileRef = AA47EC321D8CFA7100882227 /* RNGoogleSignin.m */; };
-		AA47EC361D8CFA7100882227 /* RNGoogleSigninButtonManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AA47EC331D8CFA7100882227 /* RNGoogleSigninButtonManager.m */; };
 		AA47EC3F1D8D03F300882227 /* GoogleAuthUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA47EC3E1D8D03F300882227 /* GoogleAuthUtilities.framework */; };
+		AA5668DF1D8DDEE70033AA7D /* FirebaseAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA5668DE1D8DDEE70033AA7D /* FirebaseAnalytics.framework */; };
+		AA5668E11D8DDF850033AA7D /* FirebaseInstanceID.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA5668E01D8DDF850033AA7D /* FirebaseInstanceID.framework */; };
+		AA5668E31D8DDFBF0033AA7D /* GGLCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA5668E21D8DDFBF0033AA7D /* GGLCore.framework */; };
+		AA5668E51D8DDFC60033AA7D /* GGLSignIn.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA5668E41D8DDFC60033AA7D /* GGLSignIn.framework */; };
+		AA5668E71D8DE0180033AA7D /* GoogleInterchangeUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA5668E61D8DE0180033AA7D /* GoogleInterchangeUtilities.framework */; };
+		AA5668F61D8DE4560033AA7D /* libRNGoogleSignin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AA5668F51D8DE4280033AA7D /* libRNGoogleSignin.a */; };
+		BF07B7D8A70D1795CD5C0BE2 /* libPods-virtualSockTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E195ECD23241A82B34763C60 /* libPods-virtualSockTests.a */; };
+		C14A800E5715E01B2CB62945 /* libPods-virtualSock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 965E8C2577A342CAD1D1A530 /* libPods-virtualSock.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -128,6 +133,13 @@
 			remoteGlobalIDString = 4F3A6B5B1ACFBCC500CA65F7;
 			remoteInfo = RCTFBLogin;
 		};
+		AA5668F41D8DE4280033AA7D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AA5668F01D8DE4280033AA7D /* RNGoogleSignin.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9FD355121D3E4A2900D06170;
+			remoteInfo = RNGoogleSignin;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -150,8 +162,11 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = virtualSock/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = virtualSock/main.m; sourceTree = "<group>"; };
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
+		6F60D78C23F6FC6C1FDC58F4 /* Pods-virtualSock.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-virtualSock.debug.xcconfig"; path = "Pods/Target Support Files/Pods-virtualSock/Pods-virtualSock.debug.xcconfig"; sourceTree = "<group>"; };
+		7257ACC0B23B8D98EAB6939F /* Pods-virtualSock.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-virtualSock.release.xcconfig"; path = "Pods/Target Support Files/Pods-virtualSock/Pods-virtualSock.release.xcconfig"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
+		965E8C2577A342CAD1D1A530 /* libPods-virtualSock.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-virtualSock.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA02D5781D8D0690005472D7 /* GoogleAppUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleAppUtilities.framework; path = virtualSock/frameworks/GoogleAppUtilities.framework; sourceTree = "<group>"; };
 		AA47EBB21D8CD91900882227 /* RCTFBLogin.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTFBLogin.xcodeproj; path = "../node_modules/react-native-facebook-login/RCTFBLogin.xcodeproj"; sourceTree = "<group>"; };
 		AA47EBBF1D8CE42200882227 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = virtualSock/frameworks/FBSDKCoreKit.framework; sourceTree = "<group>"; };
@@ -167,10 +182,17 @@
 		AA47EC281D8CF84C00882227 /* GoogleSignIn.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleSignIn.framework; path = virtualSock/frameworks/GoogleSignIn.framework; sourceTree = "<group>"; };
 		AA47EC291D8CF84C00882227 /* GoogleSymbolUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleSymbolUtilities.framework; path = virtualSock/frameworks/GoogleSymbolUtilities.framework; sourceTree = "<group>"; };
 		AA47EC2A1D8CF84C00882227 /* GoogleUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleUtilities.framework; path = virtualSock/frameworks/GoogleUtilities.framework; sourceTree = "<group>"; };
-		AA47EC311D8CFA7100882227 /* RNGoogleSignin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNGoogleSignin.h; sourceTree = "<group>"; };
-		AA47EC321D8CFA7100882227 /* RNGoogleSignin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNGoogleSignin.m; sourceTree = "<group>"; };
-		AA47EC331D8CFA7100882227 /* RNGoogleSigninButtonManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNGoogleSigninButtonManager.m; sourceTree = "<group>"; };
 		AA47EC3E1D8D03F300882227 /* GoogleAuthUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleAuthUtilities.framework; path = virtualSock/frameworks/GoogleAuthUtilities.framework; sourceTree = "<group>"; };
+		AA5668CE1D8DDE280033AA7D /* libPods-virtualSockTests.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-virtualSockTests.a"; path = "../../../../Library/Developer/Xcode/DerivedData/virtualSock-aiovopohdvabsqdggattjqatqnml/Build/Products/Debug-iphonesimulator/libPods-virtualSockTests.a"; sourceTree = "<group>"; };
+		AA5668DE1D8DDEE70033AA7D /* FirebaseAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseAnalytics.framework; path = Pods/FirebaseAnalytics/Frameworks/frameworks/FirebaseAnalytics.framework; sourceTree = "<group>"; };
+		AA5668E01D8DDF850033AA7D /* FirebaseInstanceID.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseInstanceID.framework; path = Pods/FirebaseInstanceID/Frameworks/frameworks/FirebaseInstanceID.framework; sourceTree = "<group>"; };
+		AA5668E21D8DDFBF0033AA7D /* GGLCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GGLCore.framework; path = Pods/Google/Frameworks/GGLCore.framework; sourceTree = "<group>"; };
+		AA5668E41D8DDFC60033AA7D /* GGLSignIn.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GGLSignIn.framework; path = Pods/Google/Frameworks/GGLSignIn.framework; sourceTree = "<group>"; };
+		AA5668E61D8DE0180033AA7D /* GoogleInterchangeUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleInterchangeUtilities.framework; path = Pods/GoogleInterchangeUtilities/Frameworks/GoogleInterchangeUtilities.framework; sourceTree = "<group>"; };
+		AA5668F01D8DE4280033AA7D /* RNGoogleSignin.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNGoogleSignin.xcodeproj; path = "../node_modules/react-native-google-signin/ios/RNGoogleSignin.xcodeproj"; sourceTree = "<group>"; };
+		AF6BBE971AD38E6DE393D884 /* Pods-virtualSockTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-virtualSockTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-virtualSockTests/Pods-virtualSockTests.debug.xcconfig"; sourceTree = "<group>"; };
+		E195ECD23241A82B34763C60 /* libPods-virtualSockTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-virtualSockTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FC38DF345A83AD922FE1665F /* Pods-virtualSockTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-virtualSockTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-virtualSockTests/Pods-virtualSockTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -178,7 +200,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				140ED2AC1D01E1AD002B40FF /* libReact.a in Frameworks */,
+				BF07B7D8A70D1795CD5C0BE2 /* libPods-virtualSockTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -186,6 +208,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA5668F61D8DE4560033AA7D /* libRNGoogleSignin.a in Frameworks */,
+				AA5668DF1D8DDEE70033AA7D /* FirebaseAnalytics.framework in Frameworks */,
+				AA5668E11D8DDF850033AA7D /* FirebaseInstanceID.framework in Frameworks */,
+				AA5668E31D8DDFBF0033AA7D /* GGLCore.framework in Frameworks */,
+				AA5668E51D8DDFC60033AA7D /* GGLSignIn.framework in Frameworks */,
 				AA47EC2E1D8CF84C00882227 /* GoogleSymbolUtilities.framework in Frameworks */,
 				AA47EC3F1D8D03F300882227 /* GoogleAuthUtilities.framework in Frameworks */,
 				AA47EC2D1D8CF84C00882227 /* GoogleSignIn.framework in Frameworks */,
@@ -200,6 +227,7 @@
 				146834051AC3E58100842450 /* libReact.a in Frameworks */,
 				00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */,
 				00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */,
+				AA5668E71D8DE0180033AA7D /* GoogleInterchangeUtilities.framework in Frameworks */,
 				00C302E81ABCBA2D00DB3ED1 /* libRCTImage.a in Frameworks */,
 				133E29F31AD74F7200F7D852 /* libRCTLinking.a in Frameworks */,
 				AA47EBC21D8CE42200882227 /* FBSDKCoreKit.framework in Frameworks */,
@@ -210,6 +238,7 @@
 				832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */,
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
+				C14A800E5715E01B2CB62945 /* libPods-virtualSock.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -319,10 +348,21 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		7F01085CDF9BA2EDEA1D22A0 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				6F60D78C23F6FC6C1FDC58F4 /* Pods-virtualSock.debug.xcconfig */,
+				7257ACC0B23B8D98EAB6939F /* Pods-virtualSock.release.xcconfig */,
+				AF6BBE971AD38E6DE393D884 /* Pods-virtualSockTests.debug.xcconfig */,
+				FC38DF345A83AD922FE1665F /* Pods-virtualSockTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
-				AA47EC341D8CFA7100882227 /* RNGoogleSignin */,
+				AA5668F01D8DE4280033AA7D /* RNGoogleSignin.xcodeproj */,
 				AA47EBB21D8CD91900882227 /* RCTFBLogin.xcodeproj */,
 				146833FF1AC3E56700842450 /* React.xcodeproj */,
 				00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */,
@@ -368,6 +408,8 @@
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* virtualSockTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
+				7F01085CDF9BA2EDEA1D22A0 /* Pods */,
+				D6102344943691F0964D9004 /* Frameworks */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -390,15 +432,27 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		AA47EC341D8CFA7100882227 /* RNGoogleSignin */ = {
+		AA5668F11D8DE4280033AA7D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				AA47EC311D8CFA7100882227 /* RNGoogleSignin.h */,
-				AA47EC321D8CFA7100882227 /* RNGoogleSignin.m */,
-				AA47EC331D8CFA7100882227 /* RNGoogleSigninButtonManager.m */,
+				AA5668F51D8DE4280033AA7D /* libRNGoogleSignin.a */,
 			);
-			name = RNGoogleSignin;
-			path = "../node_modules/react-native-google-signin/ios/RNGoogleSignin";
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D6102344943691F0964D9004 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AA5668E61D8DE0180033AA7D /* GoogleInterchangeUtilities.framework */,
+				AA5668E41D8DDFC60033AA7D /* GGLSignIn.framework */,
+				AA5668E21D8DDFBF0033AA7D /* GGLCore.framework */,
+				AA5668E01D8DDF850033AA7D /* FirebaseInstanceID.framework */,
+				AA5668DE1D8DDEE70033AA7D /* FirebaseAnalytics.framework */,
+				AA5668CE1D8DDE280033AA7D /* libPods-virtualSockTests.a */,
+				965E8C2577A342CAD1D1A530 /* libPods-virtualSock.a */,
+				E195ECD23241A82B34763C60 /* libPods-virtualSockTests.a */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -408,9 +462,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "virtualSockTests" */;
 			buildPhases = (
+				384D0DD4AB86FA3F19BB00D8 /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
+				1129B054516D8E4DEAACE343 /* [CP] Embed Pods Frameworks */,
+				C9995690354EBD78D75280FE /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -426,10 +483,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "virtualSock" */;
 			buildPhases = (
+				D85CCBC0C6318D4C548A650C /* [CP] Check Pods Manifest.lock */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
+				1F46697CE62CAE9E73588B29 /* [CP] Embed Pods Frameworks */,
+				AE6BDC580505C4F37BBF4DC5 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -513,6 +573,10 @@
 				{
 					ProductGroup = 146834001AC3E56700842450 /* Products */;
 					ProjectRef = 146833FF1AC3E56700842450 /* React.xcodeproj */;
+				},
+				{
+					ProductGroup = AA5668F11D8DE4280033AA7D /* Products */;
+					ProjectRef = AA5668F01D8DE4280033AA7D /* RNGoogleSignin.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -601,6 +665,13 @@
 			remoteRef = AA47EBB61D8CD91900882227 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		AA5668F51D8DE4280033AA7D /* libRNGoogleSignin.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNGoogleSignin.a;
+			remoteRef = AA5668F41D8DE4280033AA7D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -639,6 +710,96 @@
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/packager/react-native-xcode.sh";
 		};
+		1129B054516D8E4DEAACE343 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-virtualSockTests/Pods-virtualSockTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		1F46697CE62CAE9E73588B29 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-virtualSock/Pods-virtualSock-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		384D0DD4AB86FA3F19BB00D8 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		AE6BDC580505C4F37BBF4DC5 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-virtualSock/Pods-virtualSock-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C9995690354EBD78D75280FE /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-virtualSockTests/Pods-virtualSockTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D85CCBC0C6318D4C548A650C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -654,10 +815,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AA47EC361D8CFA7100882227 /* RNGoogleSigninButtonManager.m in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
-				AA47EC351D8CFA7100882227 /* RNGoogleSignin.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -686,9 +845,10 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AF6BBE971AD38E6DE393D884 /* Pods-virtualSockTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = "";
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -704,10 +864,11 @@
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FC38DF345A83AD922FE1665F /* Pods-virtualSockTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = "";
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = virtualSockTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -719,12 +880,21 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6F60D78C23F6FC6C1FDC58F4 /* Pods-virtualSock.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_CXX_LIBRARY = "libstdc++";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEAD_CODE_STRIPPING = NO;
-				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/virtualSock/frameworks";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/virtualSock/frameworks",
+					"$(PROJECT_DIR)/Pods/FirebaseAnalytics/Frameworks/frameworks",
+					"$(PROJECT_DIR)/Pods/FirebaseInstanceID/Frameworks/frameworks",
+					"$(PROJECT_DIR)/Pods/Google/Frameworks",
+					"$(PROJECT_DIR)/Pods/GoogleInterchangeUtilities/Frameworks",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
@@ -745,11 +915,20 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7257ACC0B23B8D98EAB6939F /* Pods-virtualSock.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_CXX_LIBRARY = "libstdc++";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/virtualSock/frameworks";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/virtualSock/frameworks",
+					"$(PROJECT_DIR)/Pods/FirebaseAnalytics/Frameworks/frameworks",
+					"$(PROJECT_DIR)/Pods/FirebaseInstanceID/Frameworks/frameworks",
+					"$(PROJECT_DIR)/Pods/Google/Frameworks",
+					"$(PROJECT_DIR)/Pods/GoogleInterchangeUtilities/Frameworks",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
