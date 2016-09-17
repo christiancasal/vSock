@@ -39,3 +39,8 @@ buck-out/
 \.buckd/
 android/app/libs
 android/keystores/debug.keystore
+
+# ios
+
+ios/GoogleService-Info.plist
+ios/virtualSock/frameworks/
