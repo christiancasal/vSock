@@ -2,11 +2,14 @@ import React, {Component} from 'react';
 
 import {Text,
   View,
-  TextInput
+  TextInput,
+  TouchableHighlight
 } from 'react-native';
 
 import {FBLogin, FBLoginManager} from 'react-native-facebook-login';
 import {GoogleSignin, GoogleSigninButton} from 'react-native-google-signin';
+
+import ButtonStyles from '../views/loginView/ButtonStyles'
 
 export default class Login extends Component{
   constructor(props){
@@ -22,44 +25,44 @@ export default class Login extends Component{
     if(!this.state.user){
       let _this = this;
       return (
-        <View>
-          <FBLogin style={{ marginBottom: 10, }}
-            ref={(fbLogin) => { this.fbLogin = fbLogin }}
-            permissions={["email","user_friends"]}
-            loginBehavior={FBLoginManager.LoginBehaviors.Native}
-            onLogin={function(data){
-              console.log("Logged in!");
-              console.log(data);
-              _this.setState({ user : data.credentials });
-            }}
-            onLogout={function(){
-              console.log("Logged out.");
-              _this.setState({ user : null });
-            }}
-            onLoginFound={function(data){
-              console.log("Existing login found.");
-              console.log(data);
-              _this.setState({ user : data.credentials });
-            }}
-            onLoginNotFound={function(){
-              console.log("No user logged in.");
-              _this.setState({ user : null });
-            }}
-            onError={function(data){
-              console.log("ERROR");
-              console.log(data);
-            }}
-            onCancel={function(){
-              console.log("User cancelled.");
-            }}
-            onPermissionsMissing={function(data){
-              console.log("Check permissions!");
-              console.log(data);
-            }}
-        />
+        <View style={ButtonStyles.container}>
+            <FBLogin style={ButtonStyles.loginFBButton}
+              ref={(fbLogin) => { this.fbLogin = fbLogin }}
+              permissions={["email","user_friends"]}
+              loginBehavior={FBLoginManager.LoginBehaviors.Native}
+              onLogin={function(data){
+                console.log("Logged in!");
+                console.log(data);
+                _this.setState({ user : data.credentials });
+              }}
+              onLogout={function(){
+                console.log("Logged out.");
+                _this.setState({ user : null });
+              }}
+              onLoginFound={function(data){
+                console.log("Existing login found.");
+                console.log(data);
+                _this.setState({ user : data.credentials });
+              }}
+              onLoginNotFound={function(){
+                console.log("No user logged in.");
+                _this.setState({ user : null });
+              }}
+              onError={function(data){
+                console.log("ERROR");
+                console.log(data);
+              }}
+              onCancel={function(){
+                console.log("User cancelled.");
+              }}
+              onPermissionsMissing={function(data){
+                console.log("Check permissions!");
+                console.log(data);
+              }}
+            />
           <GoogleSigninButton
-            style={{width: 312, height: 48}}
-            size={GoogleSigninButton.Size.Wide}
+            style={ButtonStyles.loginGGButton}
+            size={GoogleSigninButton.Size.Standard}
             color={GoogleSigninButton.Color.Light}
             onPress={this._signIn.bind(this)}
             />

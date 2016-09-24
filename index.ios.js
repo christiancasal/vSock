@@ -11,7 +11,7 @@ import {
 // let store = createStore(todos, ['Use Redux'])
 
 // import Start from './app/views/Start'
-import Login from './app/views/loginView/Login'
+import LoginView from './app/views/loginView/LoginView'
 
 class virtualSock extends Component {
 
@@ -31,8 +31,8 @@ class virtualSock extends Component {
 
 
   _renderScene(route, navigator){
-    if(route.index === 'Login'){
-      return(<Login navigator={navigator} />)
+    if(route.index === 'LoginView'){
+      return(<LoginView navigator={navigator} />)
     }
   }
 
@@ -40,7 +40,7 @@ class virtualSock extends Component {
 
     return (
       <Navigator
-        initialRoute={{index: 'Login'}}
+        initialRoute={{index: 'LoginView'}}
         renderScene={this._renderScene.bind(this)}
       />
     );
