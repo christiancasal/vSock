@@ -9,7 +9,7 @@ import {Text,
 import {FBLogin, FBLoginManager} from 'react-native-facebook-login';
 import {GoogleSignin, GoogleSigninButton} from 'react-native-google-signin';
 
-import ButtonStyles from '../views/loginView/ButtonStyles'
+import ButtonStyles from '../styles/ButtonStyles'
 
 export default class Login extends Component{
   constructor(props){

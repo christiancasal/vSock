@@ -9,7 +9,7 @@ const screenWidth = Dimensions.get('window').width;
 export default StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: 'row',
+    flexDirection: 'column',
     backgroundColor: 'red',
     justifyContent:'center',
     alignItems: 'center'

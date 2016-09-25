@@ -8,9 +8,7 @@ const screenWidth = Dimensions.get('window').width;
 
 export default StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: 'green',
-    height: 125,
     justifyContent: 'center',
     alignItems: 'center'
     // width: 312,
