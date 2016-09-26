@@ -19,11 +19,55 @@ export default StyleSheet.create({
   loginGGButton: {
     marginTop: 5,
     backgroundColor: 'white',
-    height: 48,
+    height: 50,
     width: 175,
     borderRadius: 5,
     // zIndex: -1,
     alignItems: 'center',
     justifyContent:'center'
+  },
+  createAcctContainer:{
+    backgroundColor: 'white',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    marginTop: 5,
+    marginBottom: 10
+  },
+  signInButton: {
+    backgroundColor: 'blue',
+    width: 100,
+    height: 50,
+    marginLeft: 5,
+    marginRight: 5,
+    justifyContent:'center',
+    alignItems: 'center'
+  },
+  createAcctButton: {
+    backgroundColor: 'green',
+    width: 100,
+    height: 50,
+    marginLeft: 5,
+    marginRight: 5,
+    justifyContent:'center',
+    alignItems: 'center'
+  },
+  forgotContainer:{
+    backgroundColor: 'white',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    marginTop: 5,
+    marginBottom: 10
+  },
+  forgotButton: {
+    backgroundColor: 'blue',
+    width: 75,
+    height: 20,
+    marginLeft: 5,
+    marginRight: 5,
+    justifyContent:'center',
+    alignItems: 'center'
+  },
+  forgotButtonText:{
+    fontSize: 10,
   }
 })
