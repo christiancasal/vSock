@@ -44,3 +44,7 @@ android/keystores/debug.keystore
 
 ios/GoogleService-Info.plist
 ios/virtualSock/frameworks/
+
+# keys
+
+app/assets/keys.js

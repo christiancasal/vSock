@@ -11,7 +11,7 @@ import {GoogleSignin, GoogleSigninButton} from 'react-native-google-signin';
 
 import ButtonStyles from '../styles/ButtonStyles'
 
-export default class Login extends Component{
+export default class GGFBLoginButtons extends Component{
   constructor(props){
     super(props)
     this.state = {
@@ -20,10 +20,6 @@ export default class Login extends Component{
       user: null
     }
   }
-  _userSignIn = () => {
-    console.log('hello');
-  }
-
   focusNextField = (next) => {
     this.refs[next].focus();
   };
