@@ -13,16 +13,16 @@ import LoginViewStyles from './styles/LoginViewStyles';
 import Title from './Title';
 
 //controller components
-import Login from './controllers/Login';
-import EmailHandler from './controllers/EmailHandler'
+import GGFBLoginButtons from './controllers/GGFBLoginButtons';
+import UserHandling from './controllers/UserHandling'
 
 export default class LoginView extends Component {
   render(){
     return(
       <View style={LoginViewStyles.container}>
         <Title />
-        <EmailHandler />
-        <Login />
+        <UserHandling />
+        <GGFBLoginButtons />
       </View>
     )
   }

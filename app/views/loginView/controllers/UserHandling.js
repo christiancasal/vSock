@@ -9,27 +9,58 @@ import {
 import InputStyles from '../styles/InputStyles';
 import ButtonStyles from '../styles/ButtonStyles';
 
-export default class EmailHandler extends Component{
+//initialize bcrypt
+import bcrypt from 'react-native-bcrypt';
+const salt = bcrypt.genSaltSync(10);
+
+//initalize firebase
+import * as firebase from 'firebase';
+
+import firebase_keys from '../../../assets/keys'
+
+const firebaseConfig = {
+  apiKey: firebase_keys().apiKey,
+  authDomain: firebase_keys().authDomain,
+  databaseURL: firebase_keys().databaseURL,
+  storageBucket: firebase_keys().storageBucket
+};
+const firebaseApp = firebase.initializeApp(firebaseConfig);
+
+export default class UserHandling extends Component{
   constructor(props){
     super(props);
     this.state = {
       email: 'Email',
       password:'Password',
     }
+    this.itemsRef = firebaseApp.database().ref();
   }
   validate_email = (email) => {
     let emailVal = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return emailVal.test(email)
+  }
+  validate_password = (password) => {
+    //minimum 8 characters. at least one letter, number, and special character
+    let passwordVal = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/;
 
-      return emailVal.test(email)
-
+    return passwordVal.test(password)
   }
   _userSignIn = () => {
     console.log('hello');
-    if(!this.validate_email(this.state.email)){
-      console.log('not valid');
+    //error checks
+    let isEmailGood = this.validate_email(this.state.email)
+    let isPasswordGood = this.validate_password(this.state.password)
+
+    if(!isEmailGood){
+      console.log('Invalid Email');
     }
-    else {
-      console.log('valid email');
+    if(!isPasswordGood){
+      console.log('Invalid Password');
+    }
+    if(isEmailGood && isPasswordGood){
+      console.log('Valid Sign In');
+      const hash = bcrypt.hashSync(this.state.password, salt)
+      //store password
     }
   }
 
