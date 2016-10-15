@@ -15,7 +15,7 @@ import Settings from '../settingsView/Settings'
 import Log from '../logView/Log'
 
 
-export default class Start extends Component {
+export default class Welcome extends Component {
   constructor(props){
     super(props)
       this.state = {
@@ -40,6 +40,7 @@ export default class Start extends Component {
   }
 
   render(){
+    console.log('welcome view!');
     return(
       // <Text>This is the startView</Text>
 

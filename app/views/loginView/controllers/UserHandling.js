@@ -9,6 +9,12 @@ import {
 import InputStyles from '../styles/InputStyles';
 import ButtonStyles from '../styles/ButtonStyles';
 
+//view components
+import LoginViewStyles from './../styles/LoginViewStyles';
+import Title from './../Title';
+
+import Welcome from './../../welcomeView/Welcome';
+
 //initialize bcrypt
 import bcrypt from 'react-native-bcrypt';
 const salt = bcrypt.genSaltSync(10);
@@ -32,8 +38,24 @@ export default class UserHandling extends Component{
     this.state = {
       email: 'Email',
       password:'Password',
+      loggedIn: ''
     }
     this.itemsRef = firebaseApp.database().ref();
+  }
+  componentWillMount(){
+    console.log('Component Will Mount!');
+
+    let userLogInStatus = this.verifyUser();
+    this.setState({loggedIn: false});
+
+  }
+  verifyUser = () => {
+    let user = firebaseApp.auth().currentUser;
+    if(!user){
+      console.log(user);
+      return user;
+    }
+    return user.emailVerified;
   }
   validate_email = (email) => {
     let emailVal = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -45,7 +67,34 @@ export default class UserHandling extends Component{
 
     return passwordVal.test(password)
   }
-  _userSignIn = () => {
+  createAccount = () => {
+    console.log('this is create account');
+    console.log(this.state.email);
+    firebaseApp.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).catch(function(error){
+      let errorCode = error.code;
+      let errorMessage = error.message;
+      console.log(error);
+    }).then(() => {
+      console.log('promise');
+      console.log(this.state);
+      this.verifyEmail();
+    })
+  }
+  verifyEmail = () => {
+    console.log('this is verify email');
+    let user = firebaseApp.auth().currentUser;
+
+    if(!user.emailVerified){
+      user.sendEmailVerification().then(function(){
+        //Email sent
+      }, function(error){
+        console.log(error);
+      });
+    } else {
+      return user.emailVerified;
+    }
+  }
+  userSignIn = () => {
     console.log('hello');
     //error checks
     let isEmailGood = this.validate_email(this.state.email)
@@ -59,53 +108,62 @@ export default class UserHandling extends Component{
     }
     if(isEmailGood && isPasswordGood){
       console.log('Valid Sign In');
-      const hash = bcrypt.hashSync(this.state.password, salt)
+      // const hash = bcrypt.hashSync(this.state.password, salt)
       //store password
     }
   }
-
   focusNextField = (next) => {
     this.refs[next].focus();
   };
 
   render(){
-    return(
-      <View>
-        <TextInput style={InputStyles.inputBox}
-          placeholder={this.state.email}
-          keyboardType="email-address"
-          onChangeText={(email) => this.setState({email})}
-          autoCorrect={false}
-          autoCapitalize="none"
-          onSubmitEditing={() => this.focusNextField('Password')}
-        />
-        <TextInput style={[InputStyles.inputBox, InputStyles.inputPW]}
-          ref="Password"
-          placeholder={this.state.password}
-          onChangeText={(password) => this.setState({password})}
-          autoCorrect={false}
-          autoCapitalize="none"
-          secureTextEntry={true}
-        />
+    let { email, password, loggedIn } = this.state;
 
-        <View style={ButtonStyles.createAcctContainer}>
-          <TouchableHighlight
-            style={ButtonStyles.signInButton}
-            onPress={() => this._userSignIn()}
-          >
-            <Text>Sign In</Text>
-          </TouchableHighlight>
-          <TouchableHighlight style={ButtonStyles.createAcctButton}>
-            <Text>Create</Text>
-          </TouchableHighlight>
+    console.log(email);
+    if(!loggedIn){
+      return(
+        <View style={LoginViewStyles.container}>
+          <Title />
+            <TextInput style={InputStyles.inputBox}
+              placeholder={email}
+              keyboardType="email-address"
+              onChangeText={(email) => this.setState({email})}
+              autoCorrect={false}
+              autoCapitalize="none"
+              onSubmitEditing={() => this.focusNextField('Password')}
+            />
+            <TextInput style={[InputStyles.inputBox, InputStyles.inputPW]}
+              ref="Password"
+              placeholder={password}
+              onChangeText={(password) => this.setState({password})}
+              autoCorrect={false}
+              autoCapitalize="none"
+              secureTextEntry={true}
+            />
+            <View style={ButtonStyles.createAcctContainer}>
+              <TouchableHighlight
+                style={ButtonStyles.signInButton}
+                onPress={() => this.userSignIn()}
+              >
+                <Text>Sign In</Text>
+              </TouchableHighlight>
+              <TouchableHighlight style={ButtonStyles.createAcctButton} onPress={() => this.createAccount()}>
+                <Text>Create</Text>
+              </TouchableHighlight>
+            </View>
+            <View style={ButtonStyles.forgotContainer}>
+              <TouchableHighlight style={ButtonStyles.forgotButton}>
+                <Text style={ButtonStyles.forgotButtonText}>Forgot?</Text>
+              </TouchableHighlight>
+            </View>
         </View>
-
-        <View style={ButtonStyles.forgotContainer}>
-          <TouchableHighlight style={ButtonStyles.forgotButton}>
-            <Text style={ButtonStyles.forgotButtonText}>Forgot?</Text>
-          </TouchableHighlight>
-        </View>
-      </View>
-    )
+      )
+    }
+    else{
+      console.log('welcome rendered');
+      return(
+        <Welcome />
+      )
+    }
   }
 }
