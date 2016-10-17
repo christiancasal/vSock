@@ -11,8 +11,8 @@ import ButtonStyles from '../styles/ButtonStyles';
 
 //view components
 import LoginViewStyles from './../styles/LoginViewStyles';
-import Title from './../Title';
 
+import Title from './../Title';
 import Welcome from './../../welcomeView/Welcome';
 
 //initialize bcrypt
@@ -62,10 +62,11 @@ export default class UserHandling extends Component{
     }
     return user.emailVerified;
   }
-  validate_email = (email) => {
-    let emailVal = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return emailVal.test(email)
-  }
+  //NOTE: email validation is now done by firebase
+  // validate_email = (email) => {
+  //   let emailVal = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  //   return emailVal.test(email)
+  // }
   validate_password = (password) => {
     //minimum 8 characters. at least one letter, number, and special character
     let passwordVal = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/;
@@ -99,9 +100,16 @@ export default class UserHandling extends Component{
       return user.emailVerified;
     }
   }
-  resetPassword = () => {
+  resetPassword = (email) => {
+    console.log(email)
     this.setState({toggle:{ showPassword: false }});
     let auth = firebaseApp.auth();
+
+    auth.sendPasswordResetEmail(email).then(function() {
+      // Email sent.
+    }, function(error) {
+      // An error happened.
+    });
   }
   userSignIn = () => {
     console.log('userSignIn');
@@ -125,21 +133,7 @@ export default class UserHandling extends Component{
     this.refs[next].focus();
   };
   //functions for displaying components
-  displayEmailInput = () => {
-    let { email } = this.state;
-
-    return <TextInput style={InputStyles.inputBox}
-      placeholder={email}
-      keyboardType="email-address"
-      onChangeText={(email) => this.setState({email})}
-      autoCorrect={false}
-      autoCapitalize="none"
-      onSubmitEditing={() => this.focusNextField('Password')}
-      />
-  }
-  displayPasswordInput = () => {
-    let { password } = this.state;
-
+  displayPasswordInput = (password) => {
     return <TextInput style={[InputStyles.inputBox, InputStyles.inputPW]}
       ref="Password"
       placeholder={password}
@@ -150,11 +144,12 @@ export default class UserHandling extends Component{
       />
   }
   displayForgotPasswordText = () => {
+
     return <Text>Please enter your e-mail</Text>
   }
   displaySignInButton = () => {
     return <TouchableHighlight style={ButtonStyles.signInButton}
-      onPress={() => this.userSignIn()}>
+        onPress={() => this.userSignIn()}>
         <Text>Sign In</Text>
     </TouchableHighlight>
   }
@@ -163,28 +158,35 @@ export default class UserHandling extends Component{
       <Text>Create</Text>
     </TouchableHighlight>
   }
-  displayForgotPasswordButton = () => {
+  displayForgotPasswordButton = (email) => {
     return  <View style={ButtonStyles.forgotContainer}>
-              <TouchableHighlight style={ButtonStyles.forgotButton} onPress={() => this.resetPassword()}>
+              <TouchableHighlight style={ButtonStyles.forgotButton} onPress={() => this.resetPassword(email)}>
                 <Text style={ButtonStyles.forgotButtonText}>Forgot?</Text>
               </TouchableHighlight>
             </View>
   }
   render(){
-    let {loggedIn} = this.state;
+    let {email, password, loggedIn} = this.state;
     let {showPassword, showEmail, showSignIn, showCreateAcct } = this.state.toggle;
 
     if(!loggedIn){
       return(
         <View style={LoginViewStyles.container}>
           <Title />
-            {showEmail ? this.displayEmailInput() : null}
-            {showPassword ? this.displayPasswordInput() : this.displayForgotPasswordText() }
+            <TextInput style={InputStyles.inputBox}
+              placeholder={email}
+              keyboardType="email-address"
+              onChangeText={(email) => this.setState({email})}
+              autoCorrect={false}
+              autoCapitalize="none"
+              onSubmitEditing={() => this.focusNextField('Password')}
+              />
+            {showPassword ? this.displayPasswordInput(password) : <Text>Please enter your e-mail</Text> }
             <View style={ButtonStyles.createAcctContainer}>
               {showSignIn ? this.displaySignInButton(): null}
               {showCreateAcct ? this.displayCreateAcctButton(): null}
             </View>
-            {showPassword ? this.displayForgotPasswordButton() : null}
+            {showPassword ? this.displayForgotPasswordButton(email) : null}
         </View>
       )
     } else {
