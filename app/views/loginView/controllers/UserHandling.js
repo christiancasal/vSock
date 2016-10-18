@@ -9,6 +9,9 @@ import {
 import InputStyles from '../styles/InputStyles';
 import ButtonStyles from '../styles/ButtonStyles';
 
+import { FBLogin, FBLoginManager } from 'react-native-facebook-login';
+import { GoogleSignin, GoogleSigninButton } from 'react-native-google-signin';
+
 //view components
 import LoginViewStyles from './../styles/LoginViewStyles';
 
@@ -38,6 +41,7 @@ export default class UserHandling extends Component{
     this.state = {
       email: 'Email',
       password:'Password',
+      user: null,
       loggedIn: '',
       showEmail: false,
       showPassword: false,
@@ -57,12 +61,46 @@ export default class UserHandling extends Component{
     this.setState({loggedIn: false});
 
   }
+  componentDidMount(){
+    this._setupGoogleSignin();
+  }
+  async _setupGoogleSignin() {
+    try {
+      await GoogleSignin.hasPlayServices({ autoResolve: true });
+      await GoogleSignin.configure({
+        // scopes: ["https://www.googleapis.com/auth/drive.readonly"],
+        iosClientId: '57555418851-vqbbma9aqlkkbtsn92alf6qm6rubq93j.apps.googleusercontent.com',
+        offlineAccess: false
+      });
+
+      const user = await GoogleSignin.currentUserAsync();
+      console.log(user);
+      this.setState({user});
+    }
+    catch(err) {
+      console.log("Google signin error", err.code, err.message);
+    }
+  }
   verifyUser = () => {
     let user = firebaseApp.auth().currentUser;
     if(!user){
       return user;
     }
     return user.emailVerified;
+  }
+  verifyEmail = () => {
+    console.log('this is verify email');
+    let user = firebaseApp.auth().currentUser;
+
+    if(!user.emailVerified){
+      user.sendEmailVerification().then(function(){
+        //Email sent
+      }, function(error){
+        console.log(error);
+      });
+    } else {
+      return user.emailVerified;
+    }
   }
   //NOTE: email validation is now done by firebase
   // validate_email = (email) => {
@@ -88,20 +126,6 @@ export default class UserHandling extends Component{
       this.verifyEmail();
     })
   }
-  verifyEmail = () => {
-    console.log('this is verify email');
-    let user = firebaseApp.auth().currentUser;
-
-    if(!user.emailVerified){
-      user.sendEmailVerification().then(function(){
-        //Email sent
-      }, function(error){
-        console.log(error);
-      });
-    } else {
-      return user.emailVerified;
-    }
-  }
   resetPassword = (email) => {
     this.setState({showPassword: false });
     let auth = firebaseApp.auth();
@@ -116,7 +140,24 @@ export default class UserHandling extends Component{
     console.log('this is signin with Facebook');
   }
   signInGoogle = () => {
-    console.log('this is signin with Google');
+    GoogleSignin.signIn().then((user) => {
+      console.log(user);
+      this.setState({user: user});
+    })
+    .catch((err) => {
+      console.log('WRONG SIGNIN', err);
+    })
+    .done();
+  }
+  signOutGoogle() {
+    GoogleSignin.revokeAccess().then(() => GoogleSignin.signOut()).then(() => {
+      this.setState({user: null});
+    })
+    .done();
+  }
+  signInWithProvider = (provider) => {
+    console.log('signInWithProvider');
+
   }
   signInEmail = () => {
     console.log('this is signin with Email');
@@ -241,6 +282,7 @@ export default class UserHandling extends Component{
              </View>
     }
   }
+
   render(){
     // debugger;
     let {email, password, loggedIn, showPassword, showEmail, showSignIn, showCreateAcct, showFacebook, showGoogle, showEmailButton, showForgotPW } = this.state;
