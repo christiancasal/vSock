@@ -53,7 +53,9 @@ export default class UserHandling extends Component{
       showEmailButton: true,
       showForgotPW: false,
       confirmForgotPW: false,
-      forgotPWText: 'Forgot Password?'
+      forgotPWText: 'Forgot Password?',
+      validEmail: false,
+      validEmailText: ''
     }
     this.itemsRef = firebaseApp.database().ref();
   }
@@ -119,10 +121,24 @@ export default class UserHandling extends Component{
     })
   }
   //NOTE: email validation is now done by firebase
-  // validate_email = (email) => {
-  //   let emailVal = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  //   return emailVal.test(email)
-  // }
+  validate_email = (email) => {
+    let emailVal = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+     if(emailVal.test(email)){
+       this.setState({
+         email: email,
+         validEmail: true,
+         validEmailText: 'Email is valid!'
+       })
+     }
+     else{
+       this.setState({
+         email: email,
+         validEmail:false,
+         validEmailText: 'Email is not valid!'
+       })
+     }
+  }
+
   validate_password = (password) => {
     //minimum 8 characters. at least one letter, number, and special character
     let passwordVal = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/;
@@ -148,18 +164,22 @@ export default class UserHandling extends Component{
   }
   confirmResetPassword = () => {
     console.log('this is confirm reset password');
-    let auth = firebaseApp.auth();
+      if(this.state.validEmail){
+        let auth = firebaseApp.auth();
 
-    auth.sendPasswordResetEmail(email).then(function() {
-      // Email sent.
-    }, function(error) {
-      // An error happened.
-    });
-    this.setState({
-      confirmForgotPW: false,
-    });
-    Alert.alert('Email Sent!');
-    this.signInEmail()
+        auth.sendPasswordResetEmail(email).then(function() {
+          // Email sent.
+        }, function(error) {
+          // An error happened.
+        });
+
+        this.setState({
+          confirmForgotPW: false,
+        });
+        
+        Alert.alert('Email Sent!');
+        this.signInEmail()
+    }
   }
   signInFacebook = () => {
     console.log('this is signin with Facebook');
@@ -225,14 +245,17 @@ export default class UserHandling extends Component{
   //functions for displaying components
   displayEmailInput = (email, showEmail) => {
     if(showEmail){
-      return <TextInput style={[InputStyles.inputBox, InputStyles.inputEmail]}
-        placeholder={email}
-        keyboardType="email-address"
-        onChangeText={(email) => this.setState({email})}
-        autoCorrect={false}
-        autoCapitalize="none"
-        onSubmitEditing={() => this.focusNextField('Password')}
+      return <View>
+        <TextInput style={[InputStyles.inputBox, InputStyles.inputEmail]}
+          placeholder={email}
+          keyboardType="email-address"
+          onChangeText={(email) => this.validate_email(email)}
+          autoCorrect={false}
+          autoCapitalize="none"
+          onSubmitEditing={() => this.focusNextField('Password')}
         />
+        <Text style={InputStyles.inputEmailTextCheck}>{this.state.validEmailText}</Text>
+      </View>
     }
   }
   displayPasswordInput = (password, showPassword) => {

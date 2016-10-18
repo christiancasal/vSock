@@ -16,10 +16,15 @@ export default StyleSheet.create({
   },
   inputPW: {
     backgroundColor: 'white',
+    marginTop: 15,
     marginBottom: 15
   },
   inputEmail: {
     backgroundColor: 'white',
-    marginBottom: 15
+    marginBottom: 0
+  },
+  inputEmailTextCheck: {
+    fontSize: 10,
+    color: 'red'
   }
 })
