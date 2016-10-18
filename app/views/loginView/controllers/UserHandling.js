@@ -3,7 +3,8 @@ import {
   View,
   TextInput,
   Text,
-  TouchableHighlight
+  TouchableHighlight,
+  Alert
 } from 'react-native';
 
 import InputStyles from '../styles/InputStyles';
@@ -50,7 +51,9 @@ export default class UserHandling extends Component{
       showFacebook: true,
       showGoogle: true,
       showEmailButton: true,
-      showForgotPW: false
+      showForgotPW: false,
+      confirmForgotPW: false,
+      forgotPWText: 'Forgot Password?'
     }
     this.itemsRef = firebaseApp.database().ref();
   }
@@ -102,17 +105,6 @@ export default class UserHandling extends Component{
       return user.emailVerified;
     }
   }
-  //NOTE: email validation is now done by firebase
-  // validate_email = (email) => {
-  //   let emailVal = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  //   return emailVal.test(email)
-  // }
-  validate_password = (password) => {
-    //minimum 8 characters. at least one letter, number, and special character
-    let passwordVal = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/;
-
-    return passwordVal.test(password)
-  }
   createAccount = () => {
     console.log('this is create account');
     let { email , password } = this.state;
@@ -126,15 +118,48 @@ export default class UserHandling extends Component{
       this.verifyEmail();
     })
   }
-  resetPassword = (email) => {
-    this.setState({showPassword: false });
-    let auth = firebaseApp.auth();
+  //NOTE: email validation is now done by firebase
+  // validate_email = (email) => {
+  //   let emailVal = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  //   return emailVal.test(email)
+  // }
+  validate_password = (password) => {
+    //minimum 8 characters. at least one letter, number, and special character
+    let passwordVal = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/;
+
+    return passwordVal.test(password)
+  }
+
+  setUpResetPassword = () => {
+    this.setState({
+      showEmail: true,
+      showPassword: false,
+      showSignIn: false,
+      showCreateAcct: false,
+      showFacebook: false,
+      showGoogle: false,
+      showEmailButton: false,
+      showForgotPW: true,
+      confirmForgotPW: true,
+      forgotPWText: 'Password Reset'
+    })
+    console.log('this is reset password');
     return;
-    // auth.sendPasswordResetEmail(email).then(function() {
-    //   // Email sent.
-    // }, function(error) {
-    //   // An error happened.
-    // });
+  }
+  confirmResetPassword = () => {
+    console.log('this is confirm reset password');
+    let auth = firebaseApp.auth();
+
+    auth.sendPasswordResetEmail(email).then(function() {
+      // Email sent.
+    }, function(error) {
+      // An error happened.
+    });
+    this.setState({
+      confirmForgotPW: false,
+    });
+    Alert.alert('Email Sent!');
+    this.signInEmail()
   }
   signInFacebook = () => {
     console.log('this is signin with Facebook');
@@ -165,14 +190,15 @@ export default class UserHandling extends Component{
     let { showEmail, showPassword, showSignIn, showCreateAcct, showFacebook, showGoogle, showEmailButton, showForgotPW } = this.state;
 
     this.setState({
-      showEmail: !showEmail,
-      showPassword: !showPassword,
-      showSignIn: !showSignIn,
-      showCreateAcct: !showCreateAcct,
-      showFacebook: !showFacebook,
-      showGoogle: !showGoogle,
-      showEmailButton: !showEmailButton,
-      showForgotPW: !showForgotPW
+      showEmail: true,
+      showPassword: true,
+      showSignIn: true,
+      showCreateAcct: true,
+      showFacebook: false,
+      showGoogle: false,
+      showEmailButton: false,
+      showForgotPW: true,
+      forgotPWText: 'Forgot Password?'
     })
   }
   userSignIn = () => {
@@ -239,21 +265,21 @@ export default class UserHandling extends Component{
       </TouchableHighlight>
     }
   }
-  displayForgotPasswordButton = (showForgotPW) => {
-    if (showForgotPW){
+  displayForgotPasswordButton = (showForgotPW, confirmForgotPW) => {
+    if(showForgotPW && !confirmForgotPW){
       return  <View style={ButtonStyles.forgotContainer}>
-                <TouchableHighlight style={ButtonStyles.forgotButton} onPress={() => this.resetPassword(email)}>
-                  <Text style={ButtonStyles.forgotButtonText}>Forgot Password?</Text>
+                <TouchableHighlight style={ButtonStyles.forgotButton} onPress={() => this.setUpResetPassword()}>
+                  <Text style={ButtonStyles.forgotButtonText}>{this.state.forgotPWText}</Text>
                 </TouchableHighlight>
               </View>
       }
-    // else {
-    //   return <View style={ButtonStyles.forgotContainer}>
-    //             <TouchableHighlight style={ButtonStyles.forgotButton} onPress={() => this.resetPassword(email)}>
-    //               <Text style={ButtonStyles.forgotButtonText}>Password Reset</Text>
-    //             </TouchableHighlight>
-    //           </View>
-    // }
+    if(showForgotPW && confirmForgotPW) {
+      return <View style={ButtonStyles.forgotContainer}>
+                <TouchableHighlight style={ButtonStyles.forgotButton} onPress={() => this.confirmResetPassword()}>
+                  <Text style={ButtonStyles.forgotButtonText}>{this.state.forgotPWText}</Text>
+                </TouchableHighlight>
+              </View>
+    }
   }
   displayFacebookButton = (showFacebook) => {
     if(showFacebook){
@@ -285,7 +311,7 @@ export default class UserHandling extends Component{
 
   render(){
     // debugger;
-    let {email, password, loggedIn, showPassword, showEmail, showSignIn, showCreateAcct, showFacebook, showGoogle, showEmailButton, showForgotPW } = this.state;
+    let { email, password, loggedIn, showPassword, showEmail, showSignIn, showCreateAcct, showFacebook, showGoogle, showEmailButton, showForgotPW, confirmForgotPW } = this.state;
 
     let emailInput, passwordInput, createAcct, signIn, forgotPassword, facebookButton, googleButton, emailButton  = null;
 
@@ -293,7 +319,7 @@ export default class UserHandling extends Component{
     passwordInput = this.displayPasswordInput(password, showPassword);
     signIn = this.displaySignInButton(showSignIn)
     createAcct = this.displayCreateAcctButton(showCreateAcct);
-    forgotPassword = this.displayForgotPasswordButton(showForgotPW)
+    forgotPassword = this.displayForgotPasswordButton(showForgotPW, confirmForgotPW)
     facebookButton = this.displayFacebookButton(showFacebook);
     googleButton = this.displayGoogleButton(showGoogle);
     emailButton = this.displayEmailButton(showEmailButton)
