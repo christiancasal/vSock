@@ -39,10 +39,14 @@ export default class UserHandling extends Component{
       email: 'Email',
       password:'Password',
       loggedIn: '',
-      showEmail: true,
-      showPassword: true,
-      showSignIn: true,
-      showCreateAcct: true,
+      showEmail: false,
+      showPassword: false,
+      showSignIn: false,
+      showCreateAcct: false,
+      showFacebook: true,
+      showGoogle: true,
+      showEmailButton: true,
+      showForgotPW: false
     }
     this.itemsRef = firebaseApp.database().ref();
   }
@@ -108,6 +112,28 @@ export default class UserHandling extends Component{
     //   // An error happened.
     // });
   }
+  signInFacebook = () => {
+    console.log('this is signin with Facebook');
+  }
+  signInGoogle = () => {
+    console.log('this is signin with Google');
+  }
+  signInEmail = () => {
+    console.log('this is signin with Email');
+
+    let { showEmail, showPassword, showSignIn, showCreateAcct, showFacebook, showGoogle, showEmailButton, showForgotPW } = this.state;
+
+    this.setState({
+      showEmail: !showEmail,
+      showPassword: !showPassword,
+      showSignIn: !showSignIn,
+      showCreateAcct: !showCreateAcct,
+      showFacebook: !showFacebook,
+      showGoogle: !showGoogle,
+      showEmailButton: !showEmailButton,
+      showForgotPW: !showForgotPW
+    })
+  }
   userSignIn = () => {
     console.log('userSignIn');
     //error checks
@@ -132,7 +158,7 @@ export default class UserHandling extends Component{
   //functions for displaying components
   displayEmailInput = (email, showEmail) => {
     if(showEmail){
-      return <TextInput style={InputStyles.inputBox}
+      return <TextInput style={[InputStyles.inputBox, InputStyles.inputEmail]}
         placeholder={email}
         keyboardType="email-address"
         onChangeText={(email) => this.setState({email})}
@@ -153,57 +179,103 @@ export default class UserHandling extends Component{
         secureTextEntry={true}
         />
     }
-    else {
-       return <Text>Please enter your e-mail</Text>
-    }
+    // else {
+    //    return <Text>Please enter your e-mail</Text>
+    // }
   }
   displaySignInButton = (showSignIn) => {
     if(showSignIn){
       return <TouchableHighlight style={ButtonStyles.signInButton}
           onPress={() => this.userSignIn()}>
-          <Text>Sign In</Text>
+          <Text style={ButtonStyles.loginButtonText}>Sign In</Text>
       </TouchableHighlight>
     }
   }
   displayCreateAcctButton = (showCreateAcct) => {
     if(showCreateAcct){
       return <TouchableHighlight style={ButtonStyles.createAcctButton} onPress={() => this.createAccount()}>
-        <Text>Create</Text>
+        <Text style={ButtonStyles.loginButtonText}>Create</Text>
       </TouchableHighlight>
     }
   }
-  displayForgotPasswordButton = (email, showPassword) => {
-    if (showPassword){
+  displayForgotPasswordButton = (showForgotPW) => {
+    if (showForgotPW){
       return  <View style={ButtonStyles.forgotContainer}>
                 <TouchableHighlight style={ButtonStyles.forgotButton} onPress={() => this.resetPassword(email)}>
-                  <Text style={ButtonStyles.forgotButtonText}>Forgot?</Text>
+                  <Text style={ButtonStyles.forgotButtonText}>Forgot Password?</Text>
                 </TouchableHighlight>
               </View>
       }
+    // else {
+    //   return <View style={ButtonStyles.forgotContainer}>
+    //             <TouchableHighlight style={ButtonStyles.forgotButton} onPress={() => this.resetPassword(email)}>
+    //               <Text style={ButtonStyles.forgotButtonText}>Password Reset</Text>
+    //             </TouchableHighlight>
+    //           </View>
+    // }
+  }
+  displayFacebookButton = (showFacebook) => {
+    if(showFacebook){
+      return <View>
+              <TouchableHighlight style={ButtonStyles.loginFBButton} onPress={() => this.signInFacebook()}>
+                <Text style={ButtonStyles.loginButtonText}>Continue with Facebook</Text>
+              </TouchableHighlight>
+             </View>
+    }
+  }
+  displayGoogleButton = (showGoogle) => {
+    if(showGoogle){
+      return <View>
+              <TouchableHighlight style={ButtonStyles.loginGOOGButton} onPress={() => this.signInGoogle()}>
+                <Text style={ButtonStyles.loginButtonText}> Sign in with Google</Text>
+              </TouchableHighlight>
+             </View>
+    }
+  }
+  displayEmailButton = (showEmailButton) => {
+    if(showEmailButton){
+      return <View>
+              <TouchableHighlight style={ButtonStyles.loginEmailButton} onPress={() => this.signInEmail()}>
+                <Text style={ButtonStyles.loginButtonText}> Sign in with Email</Text>
+              </TouchableHighlight>
+             </View>
+    }
   }
   render(){
     // debugger;
-    let {email, password, loggedIn, showPassword, showEmail, showSignIn, showCreateAcct } = this.state;
+    let {email, password, loggedIn, showPassword, showEmail, showSignIn, showCreateAcct, showFacebook, showGoogle, showEmailButton, showForgotPW } = this.state;
 
-    let emailInput, passwordInput, createAcct, signIn, forgotPassword  = null;
+    let emailInput, passwordInput, createAcct, signIn, forgotPassword, facebookButton, googleButton, emailButton  = null;
 
     emailInput = this.displayEmailInput(email, showEmail);
     passwordInput = this.displayPasswordInput(password, showPassword);
     signIn = this.displaySignInButton(showSignIn)
     createAcct = this.displayCreateAcctButton(showCreateAcct);
-    forgotPassword = this.displayForgotPasswordButton(email, showPassword)
+    forgotPassword = this.displayForgotPasswordButton(showForgotPW)
+    facebookButton = this.displayFacebookButton(showFacebook);
+    googleButton = this.displayGoogleButton(showGoogle);
+    emailButton = this.displayEmailButton(showEmailButton)
 
     if(!loggedIn){
       return(
         <View style={LoginViewStyles.container}>
           <Title />
-            {emailInput}
-            {passwordInput}
+            <View >
+              {emailInput}
+              {passwordInput}
+            </View>
             <View style={ButtonStyles.createAcctContainer}>
               {signIn}
               {createAcct}
             </View>
-            {forgotPassword}
+            <View>
+              {forgotPassword}
+            </View>
+            <View>
+              {facebookButton}
+              {googleButton}
+              {emailButton}
+            </View>
         </View>
       )
     } else {

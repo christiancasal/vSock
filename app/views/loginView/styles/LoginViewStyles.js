@@ -10,7 +10,7 @@ export default StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'column',
-    backgroundColor: 'red',
+    backgroundColor: '#DDDDDD',
     justifyContent:'center',
     alignItems: 'center'
   }
