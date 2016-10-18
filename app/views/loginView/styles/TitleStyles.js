@@ -4,11 +4,13 @@ import {
 
 export default StyleSheet.create({
   container:{
-    backgroundColor: 'blue',
     height: 20,
     marginBottom: 20
   },
   titletext: {
-    fontSize: 20
+    fontSize: 20,
+    fontFamily: 'Roboto-Medium',
+    fontWeight: 'bold',
+    color: '#444444'
   }
 })

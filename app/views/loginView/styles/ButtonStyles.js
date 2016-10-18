@@ -14,31 +14,54 @@ export default StyleSheet.create({
     // width: 312,
   },
   loginFBButton: {
-    marginBottom: 5
+    marginTop: 15,
+    backgroundColor: '#4267B2',
+    height: 40,
+    width: 240,
+    borderRadius: 5,
+    // zIndex: -1,
+    alignItems: 'center',
+    justifyContent:'center'
   },
-  loginGGButton: {
-    marginTop: 5,
-    backgroundColor: 'white',
-    height: 50,
-    width: 175,
+  loginGOOGButton: {
+    marginTop: 15,
+    backgroundColor: '#d34836',
+    height: 40,
+    width: 240,
+    borderRadius: 5,
+    // zIndex: -1,
+    alignItems: 'center',
+    justifyContent:'center'
+  },
+  loginButtonText:{
+    fontFamily: 'Roboto-Medium',
+    color: '#EEEEEE',
+    fontWeight: 'bold',
+    padding: 8
+  },
+  loginEmailButton: {
+    marginTop: 15,
+    backgroundColor: '#999999',
+    height: 40,
+    width: 240,
     borderRadius: 5,
     // zIndex: -1,
     alignItems: 'center',
     justifyContent:'center'
   },
   createAcctContainer:{
-    backgroundColor: 'white',
     flexDirection: 'row',
     justifyContent: 'center',
     marginTop: 5,
     marginBottom: 10
   },
   signInButton: {
-    backgroundColor: 'blue',
+    backgroundColor: 'green',
     width: 100,
     height: 50,
     marginLeft: 5,
     marginRight: 5,
+    borderRadius: 5,
     justifyContent:'center',
     alignItems: 'center'
   },
@@ -48,26 +71,28 @@ export default StyleSheet.create({
     height: 50,
     marginLeft: 5,
     marginRight: 5,
+    borderRadius: 5,
     justifyContent:'center',
     alignItems: 'center'
   },
   forgotContainer:{
-    backgroundColor: 'white',
+    // backgroundColor: 'white',
     flexDirection: 'row',
     justifyContent: 'center',
     marginTop: 5,
     marginBottom: 10
   },
   forgotButton: {
-    backgroundColor: 'blue',
-    width: 75,
-    height: 20,
-    marginLeft: 5,
-    marginRight: 5,
+    backgroundColor: 'green',
+    width: 240,
+    height: 50,
+    borderRadius: 5,
     justifyContent:'center',
     alignItems: 'center'
   },
   forgotButtonText:{
-    fontSize: 10,
+    fontFamily: 'Roboto-Medium',
+    color: '#EEEEEE',
+    fontWeight: 'bold'
   }
 })

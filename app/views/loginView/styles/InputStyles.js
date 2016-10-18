@@ -1,12 +1,12 @@
-import {
-  StyleSheet
-} from 'react-native';
+import { StyleSheet , Dimensions } from 'react-native';
+
+const screenHeight = Dimensions.get('window').height;
+const screenWidth = Dimensions.get('window').width;
 
 export default StyleSheet.create({
   inputBox:{
     height: 30,
-    width: 225,
-    backgroundColor: 'white',
+    width: 240,
     borderWidth: 1,
     borderStyle: 'solid',
     borderColor: 'black',
@@ -15,6 +15,11 @@ export default StyleSheet.create({
     fontSize: 12
   },
   inputPW: {
-    marginBottom: 20
+    backgroundColor: 'white',
+    marginBottom: 15
+  },
+  inputEmail: {
+    backgroundColor: 'white',
+    marginBottom: 15
   }
 })
