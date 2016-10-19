@@ -42,45 +42,44 @@ export default class Welcome extends Component {
   render(){
     console.log('welcome view!');
     return(
-      // <Text>This is the startView</Text>
-
-      <TabBarIOS
-        style={{height: 20}}
-      >
-          <TabBarIOS.Item
-          title='Log'
-          selected={this.state.selectedTab === 'logTab'}
-          onPress={()=>{
-            this.setState({
-              selectedTab: 'logTab'
-            })
-          }}
-          >
-            {this._renderContent(<Log />)}
-          </TabBarIOS.Item>
-          <TabBarIOS.Item
-            title='Home'
-            selected={this.state.selectedTab === 'homeTab'}
-            onPress={()=>{
-              this.setState({
-                selectedTab: 'homeTab'
-              })
-            }}
-          >
-            {this._renderContent(<Home />)}
-          </TabBarIOS.Item>
-          <TabBarIOS.Item
-            title='Settings'
-            selected={this.state.selectedTab === 'settingsTab'}
-            onPress={()=>{
-              this.setState({
-                selectedTab: 'settingsTab'
-              })
-            }}
-          >
-            {this._renderContent(<Settings />)}
-          </TabBarIOS.Item>
-      </TabBarIOS>
+      <Text>This is the startView</Text>
+      // <TabBarIOS
+      //   style={{height: 100}}
+      // >
+      //     <TabBarIOS.Item
+      //     title='Log'
+      //     selected={this.state.selectedTab === 'logTab'}
+      //     onPress={()=>{
+      //       this.setState({
+      //         selectedTab: 'logTab'
+      //       })
+      //     }}
+      //     >
+      //       {this._renderContent(<Log />)}
+      //     </TabBarIOS.Item>
+      //     <TabBarIOS.Item
+      //       title='Home'
+      //       selected={this.state.selectedTab === 'homeTab'}
+      //       onPress={()=>{
+      //         this.setState({
+      //           selectedTab: 'homeTab'
+      //         })
+      //       }}
+      //     >
+      //       {this._renderContent(<Home />)}
+      //     </TabBarIOS.Item>
+      //     <TabBarIOS.Item
+      //       title='Settings'
+      //       selected={this.state.selectedTab === 'settingsTab'}
+      //       onPress={()=>{
+      //         this.setState({
+      //           selectedTab: 'settingsTab'
+      //         })
+      //       }}
+      //     >
+      //       {this._renderContent(<Settings />)}
+      //     </TabBarIOS.Item>
+      // </TabBarIOS>
     )
   }
 }

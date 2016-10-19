@@ -176,13 +176,46 @@ export default class UserHandling extends Component{
         this.setState({
           confirmForgotPW: false,
         });
-        
+
         Alert.alert('Email Sent!');
         this.signInEmail()
     }
   }
   signInFacebook = () => {
     console.log('this is signin with Facebook');
+    FBLoginManager.setLoginBehavior(FBLoginManager.LoginBehaviors.Native)
+
+    // FBLoginManager.loginWithPermissions(["email","user_friends"], (error, data) => {
+    //   if (!error) {
+    //     console.log("Login data: ", data);
+    //     this.setState({user: data.credentials})
+    //     console.log(data.credentials);
+    //   } else {
+    //     console.log("Error: ", error);
+    //   }
+    // })
+
+    FBLoginManager.logout((error, data) => {
+      if (!error) {
+        console.log("Logout data: ", data);
+        this.setState({user: null});
+      } else {
+        console.log("Error: ", error);
+      }
+    })
+  }
+  signOutFacebook = () => {
+    console.log('this is signin with Facebook');
+
+    FBLoginManager.logout((error, data) => {
+      if (!error) {
+        console.log("Logout data: ", data);
+        this.setState({user: null});
+      } else {
+        console.log("Error: ", error);
+      }
+    })
+
   }
   signInGoogle = () => {
     GoogleSignin.signIn().then((user) => {
@@ -199,10 +232,6 @@ export default class UserHandling extends Component{
       this.setState({user: null});
     })
     .done();
-  }
-  signInWithProvider = (provider) => {
-    console.log('signInWithProvider');
-
   }
   signInEmail = () => {
     console.log('this is signin with Email');
@@ -269,9 +298,6 @@ export default class UserHandling extends Component{
         secureTextEntry={true}
         />
     }
-    // else {
-    //    return <Text>Please enter your e-mail</Text>
-    // }
   }
   displaySignInButton = (showSignIn) => {
     if(showSignIn){
@@ -307,7 +333,8 @@ export default class UserHandling extends Component{
   displayFacebookButton = (showFacebook) => {
     if(showFacebook){
       return <View>
-              <TouchableHighlight style={ButtonStyles.loginFBButton} onPress={() => this.signInFacebook()}>
+              <TouchableHighlight style={ButtonStyles.loginFBButton} onPress={() => this.signInFacebook()}
+              >
                 <Text style={ButtonStyles.loginButtonText}>Continue with Facebook</Text>
               </TouchableHighlight>
              </View>
@@ -334,7 +361,7 @@ export default class UserHandling extends Component{
 
   render(){
     // debugger;
-    let { email, password, loggedIn, showPassword, showEmail, showSignIn, showCreateAcct, showFacebook, showGoogle, showEmailButton, showForgotPW, confirmForgotPW } = this.state;
+    let { email, password, loggedIn, showPassword, showEmail, showSignIn, showCreateAcct, showFacebook, showGoogle, showEmailButton, showForgotPW, confirmForgotPW, user } = this.state;
 
     let emailInput, passwordInput, createAcct, signIn, forgotPassword, facebookButton, googleButton, emailButton  = null;
 
@@ -347,7 +374,7 @@ export default class UserHandling extends Component{
     googleButton = this.displayGoogleButton(showGoogle);
     emailButton = this.displayEmailButton(showEmailButton)
 
-    if(!loggedIn){
+    if(!loggedIn && !user){
       return(
         <View style={LoginViewStyles.container}>
           <Title />
