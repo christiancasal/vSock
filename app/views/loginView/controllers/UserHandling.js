@@ -53,7 +53,9 @@ export default class UserHandling extends Component{
       showEmailButton: true,
       showForgotPW: false,
       confirmForgotPW: false,
-      forgotPWText: 'Forgot Password?'
+      forgotPWText: 'Forgot Password?',
+      validEmail: false,
+      validEmailText: ''
     }
     this.itemsRef = firebaseApp.database().ref();
   }
@@ -119,10 +121,24 @@ export default class UserHandling extends Component{
     })
   }
   //NOTE: email validation is now done by firebase
-  // validate_email = (email) => {
-  //   let emailVal = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  //   return emailVal.test(email)
-  // }
+  validate_email = (email) => {
+    let emailVal = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+     if(emailVal.test(email)){
+       this.setState({
+         email: email,
+         validEmail: true,
+         validEmailText: 'Email is valid!'
+       })
+     }
+     else{
+       this.setState({
+         email: email,
+         validEmail:false,
+         validEmailText: 'Email is not valid!'
+       })
+     }
+  }
+
   validate_password = (password) => {
     //minimum 8 characters. at least one letter, number, and special character
     let passwordVal = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/;
@@ -148,21 +164,58 @@ export default class UserHandling extends Component{
   }
   confirmResetPassword = () => {
     console.log('this is confirm reset password');
-    let auth = firebaseApp.auth();
+      if(this.state.validEmail){
+        let auth = firebaseApp.auth();
 
-    auth.sendPasswordResetEmail(email).then(function() {
-      // Email sent.
-    }, function(error) {
-      // An error happened.
-    });
-    this.setState({
-      confirmForgotPW: false,
-    });
-    Alert.alert('Email Sent!');
-    this.signInEmail()
+        auth.sendPasswordResetEmail(email).then(function() {
+          // Email sent.
+        }, function(error) {
+          // An error happened.
+        });
+
+        this.setState({
+          confirmForgotPW: false,
+        });
+
+        Alert.alert('Email Sent!');
+        this.signInEmail()
+    }
   }
   signInFacebook = () => {
     console.log('this is signin with Facebook');
+    FBLoginManager.setLoginBehavior(FBLoginManager.LoginBehaviors.Native)
+
+    // FBLoginManager.loginWithPermissions(["email","user_friends"], (error, data) => {
+    //   if (!error) {
+    //     console.log("Login data: ", data);
+    //     this.setState({user: data.credentials})
+    //     console.log(data.credentials);
+    //   } else {
+    //     console.log("Error: ", error);
+    //   }
+    // })
+
+    FBLoginManager.logout((error, data) => {
+      if (!error) {
+        console.log("Logout data: ", data);
+        this.setState({user: null});
+      } else {
+        console.log("Error: ", error);
+      }
+    })
+  }
+  signOutFacebook = () => {
+    console.log('this is signin with Facebook');
+
+    FBLoginManager.logout((error, data) => {
+      if (!error) {
+        console.log("Logout data: ", data);
+        this.setState({user: null});
+      } else {
+        console.log("Error: ", error);
+      }
+    })
+
   }
   signInGoogle = () => {
     GoogleSignin.signIn().then((user) => {
@@ -179,10 +232,6 @@ export default class UserHandling extends Component{
       this.setState({user: null});
     })
     .done();
-  }
-  signInWithProvider = (provider) => {
-    console.log('signInWithProvider');
-
   }
   signInEmail = () => {
     console.log('this is signin with Email');
@@ -225,14 +274,17 @@ export default class UserHandling extends Component{
   //functions for displaying components
   displayEmailInput = (email, showEmail) => {
     if(showEmail){
-      return <TextInput style={[InputStyles.inputBox, InputStyles.inputEmail]}
-        placeholder={email}
-        keyboardType="email-address"
-        onChangeText={(email) => this.setState({email})}
-        autoCorrect={false}
-        autoCapitalize="none"
-        onSubmitEditing={() => this.focusNextField('Password')}
+      return <View>
+        <TextInput style={[InputStyles.inputBox, InputStyles.inputEmail]}
+          placeholder={email}
+          keyboardType="email-address"
+          onChangeText={(email) => this.validate_email(email)}
+          autoCorrect={false}
+          autoCapitalize="none"
+          onSubmitEditing={() => this.focusNextField('Password')}
         />
+        <Text style={InputStyles.inputEmailTextCheck}>{this.state.validEmailText}</Text>
+      </View>
     }
   }
   displayPasswordInput = (password, showPassword) => {
@@ -246,9 +298,6 @@ export default class UserHandling extends Component{
         secureTextEntry={true}
         />
     }
-    // else {
-    //    return <Text>Please enter your e-mail</Text>
-    // }
   }
   displaySignInButton = (showSignIn) => {
     if(showSignIn){
@@ -284,7 +333,8 @@ export default class UserHandling extends Component{
   displayFacebookButton = (showFacebook) => {
     if(showFacebook){
       return <View>
-              <TouchableHighlight style={ButtonStyles.loginFBButton} onPress={() => this.signInFacebook()}>
+              <TouchableHighlight style={ButtonStyles.loginFBButton} onPress={() => this.signInFacebook()}
+              >
                 <Text style={ButtonStyles.loginButtonText}>Continue with Facebook</Text>
               </TouchableHighlight>
              </View>
@@ -311,7 +361,7 @@ export default class UserHandling extends Component{
 
   render(){
     // debugger;
-    let { email, password, loggedIn, showPassword, showEmail, showSignIn, showCreateAcct, showFacebook, showGoogle, showEmailButton, showForgotPW, confirmForgotPW } = this.state;
+    let { email, password, loggedIn, showPassword, showEmail, showSignIn, showCreateAcct, showFacebook, showGoogle, showEmailButton, showForgotPW, confirmForgotPW, user } = this.state;
 
     let emailInput, passwordInput, createAcct, signIn, forgotPassword, facebookButton, googleButton, emailButton  = null;
 
@@ -324,7 +374,7 @@ export default class UserHandling extends Component{
     googleButton = this.displayGoogleButton(showGoogle);
     emailButton = this.displayEmailButton(showEmailButton)
 
-    if(!loggedIn){
+    if(!loggedIn && !user){
       return(
         <View style={LoginViewStyles.container}>
           <Title />
