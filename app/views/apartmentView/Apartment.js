@@ -8,7 +8,7 @@ import {
   TabBarIOS
 } from 'react-native';
 
-export default class Home extends Component {
+export default class Apartment extends Component {
   constructor(props){
     super(props)
   }
@@ -16,7 +16,9 @@ export default class Home extends Component {
 
   render(){
     return(
-      <Text>This is the homeView</Text>
+      <View style={{height: 100,backgroundColor: 'red'}}>
+        <Text>This is the aptView</Text>
+      </View>
     )
   }
 }

@@ -12,11 +12,13 @@ export default class Settings extends Component {
     super(props)
 
   }
-  
+
 
   render(){
     return(
-      <Text>This is the Settings View</Text>
+      <View style={{height: 100,backgroundColor: 'red'}}>
+        <Text>This is the settingsView</Text>
+      </View>
     )
   }
 }

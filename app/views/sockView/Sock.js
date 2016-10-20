@@ -8,7 +8,7 @@ import {
   TabBarIOS
 } from 'react-native';
 
-export default class Log extends Component {
+export default class Home extends Component {
   constructor(props){
     super(props)
   }
@@ -16,7 +16,9 @@ export default class Log extends Component {
 
   render(){
     return(
-      <Text>This is the logView</Text>
+      <View style={{backgroundColor: 'green'}}>
+        <Text>This is the sockView</Text>
+      </View>
     )
   }
 }
