@@ -1,85 +1,78 @@
 import React, { Component } from 'react';
-import {
-  AppRegistry,
-  StyleSheet,
-  Text,
-  View,
-  TouchableHighlight,
-  TabBarIOS
-} from 'react-native';
+import { TabBarIOS } from 'react-native';
 
-// import {createStore} from 'redux';
-
-import Home from '../homeView/Home'
+import Sock from '../sockView/Sock'
 import Settings from '../settingsView/Settings'
-import Log from '../logView/Log'
+import Apartment from '../apartmentView/Apartment'
 
 
 export default class Welcome extends Component {
   constructor(props){
     super(props)
       this.state = {
-        selectedTab: 'homeTab'
+        selectedTab: 'centerTab'
       }
   }
 
-
-  _toNavigator(route){
+  renderContent = (renderPage) => {
     // debugger;
-    this.props.navigator.push({
-      index: route
-    })
-  }
+    // console.log('this is render content');
 
-  _renderContent(renderPage){
-    return(
-      <View>
-        {renderPage}
-      </View>
-    )
+    let { title0 , title1 , title2 } = this.props;
+
+    if(renderPage === title0){
+      return(
+          <Apartment />
+      )
+    }
+    if(renderPage === title1){
+      return(
+          <Sock />
+      )
+    }
+    if(renderPage === title2){
+      return(
+          <Settings />
+      )
+    }
   }
 
   render(){
     console.log('welcome view!');
+
+    let { title0 , title1 , title2 } = this.props;
+    let { selectedTab } = this.state;
+
     return(
-      <Text>This is the startView</Text>
-      // <TabBarIOS
-      //   style={{height: 100}}
-      // >
-      //     <TabBarIOS.Item
-      //     title='Log'
-      //     selected={this.state.selectedTab === 'logTab'}
-      //     onPress={()=>{
-      //       this.setState({
-      //         selectedTab: 'logTab'
-      //       })
-      //     }}
-      //     >
-      //       {this._renderContent(<Log />)}
-      //     </TabBarIOS.Item>
-      //     <TabBarIOS.Item
-      //       title='Home'
-      //       selected={this.state.selectedTab === 'homeTab'}
-      //       onPress={()=>{
-      //         this.setState({
-      //           selectedTab: 'homeTab'
-      //         })
-      //       }}
-      //     >
-      //       {this._renderContent(<Home />)}
-      //     </TabBarIOS.Item>
-      //     <TabBarIOS.Item
-      //       title='Settings'
-      //       selected={this.state.selectedTab === 'settingsTab'}
-      //       onPress={()=>{
-      //         this.setState({
-      //           selectedTab: 'settingsTab'
-      //         })
-      //       }}
-      //     >
-      //       {this._renderContent(<Settings />)}
-      //     </TabBarIOS.Item>
-      // </TabBarIOS>
+      <TabBarIOS>
+          <TabBarIOS.Item
+          title={title0}
+          selected={selectedTab === 'leftTab'}
+          onPress={()=>{
+            this.setState({ selectedTab: 'leftTab' })
+          }}
+          >
+            {this.renderContent(title0)}
+          </TabBarIOS.Item>
+          <TabBarIOS.Item
+            title={title1}
+            selected={selectedTab === 'centerTab'}
+            onPress={()=>{
+              this.setState({ selectedTab: 'centerTab' })
+            }}
+          >
+            {this.renderContent(title1)}
+          </TabBarIOS.Item>
+          <TabBarIOS.Item
+            title={title2}
+            selected={selectedTab === 'rightTab'}
+            onPress={()=>{
+              this.setState({ selectedTab: 'rightTab' })
+            }}
+          >
+            {this.renderContent(title2)}
+          </TabBarIOS.Item>
+      </TabBarIOS>
     )
   }
 }

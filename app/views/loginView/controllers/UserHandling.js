@@ -42,8 +42,9 @@ export default class UserHandling extends Component{
     this.state = {
       email: 'Email',
       password:'Password',
-      user: null,
-      loggedIn: '',
+      //uncommented for testing - moves to welcomeView
+      // user: null,
+      // loggedIn: '',
       showEmail: false,
       showPassword: false,
       showSignIn: false,
@@ -55,15 +56,18 @@ export default class UserHandling extends Component{
       confirmForgotPW: false,
       forgotPWText: 'Forgot Password?',
       validEmail: false,
-      validEmailText: ''
+      validEmailText: '',
+      user: true,
+      loggedIn: true,
     }
     this.itemsRef = firebaseApp.database().ref();
   }
   componentWillMount(){
     console.log('Component Will Mount!');
 
-    let userLogInStatus = this.verifyUser();
-    this.setState({loggedIn: false});
+    //uncommented below for testing
+    // let userLogInStatus = this.verifyUser();
+    // this.setState({loggedIn: false});
 
   }
   componentDidMount(){
@@ -397,7 +401,7 @@ export default class UserHandling extends Component{
         </View>
       )
     } else {
-        return( <Welcome /> )
+        return( <Welcome title0='Apartment' title1='Sock' title2='Settings' /> )
     }
   }
 }

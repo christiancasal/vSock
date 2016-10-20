@@ -14,22 +14,7 @@ import {
 import LoginView from './app/views/loginView/LoginView'
 
 class virtualSock extends Component {
-
-  // _todos(state = [], action){
-  //   switch(action.type){
-  //     case 'START':
-  //       return state.concat([action.text])
-  //     default:
-  //       return state
-  //   }
-  // }
-  //
-  // store.dispatch({
-  //   type:'START',
-  //
-  // })
-
-
+  
   _renderScene(route, navigator){
     if(route.index === 'LoginView'){
       return(<LoginView navigator={navigator} />)
