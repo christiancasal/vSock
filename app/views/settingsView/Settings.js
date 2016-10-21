@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import {
-  AppRegistry,
-  StyleSheet,
   Text,
   View,
-  TouchableHighlight
 } from 'react-native';
+
+import MainTabbedStyles from './../MainTabbedStyles'
 
 export default class Settings extends Component {
   constructor(props){
@@ -16,7 +15,7 @@ export default class Settings extends Component {
 
   render(){
     return(
-      <View style={{height: 100,backgroundColor: 'red'}}>
+      <View style={MainTabbedStyles.container}>
         <Text>This is the settingsView</Text>
       </View>
     )
