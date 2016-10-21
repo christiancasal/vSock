@@ -1,22 +1,25 @@
 import React, { Component } from 'react';
 import {
-  AppRegistry,
-  StyleSheet,
   Text,
-  View,
-  TouchableHighlight,
-  TabBarIOS
+  View
 } from 'react-native';
 
-export default class Home extends Component {
+import MainTabbedStyles from './../MainTabbedStyles'
+import SockViewTitle from './SockViewTitle'
+
+export default class Sock extends Component {
   constructor(props){
     super(props)
+    this.state = {
+      doorStatus: 'open!'
+    }
   }
 
 
   render(){
     return(
-      <View style={{backgroundColor: 'green'}}>
+      <View style={MainTabbedStyles.container}>
+        <SockViewTitle doorStatus={this.state.doorStatus}/>
         <Text>This is the sockView</Text>
       </View>
     )
