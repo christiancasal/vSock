@@ -4,13 +4,18 @@ import {
   Text
 } from 'react-native';
 
-import TitleStyles from './styles/TitleStyles'
+import TitleStyles from './TitleStyles';
 
 export default class Title extends Component {
+  constructor(props){
+    super(props)
+    this.state = {
+    }
+  }
   render(){
     return(
       <View style= {TitleStyles.container}>
-        <Text style={TitleStyles.titletext}>Virtual Sock</Text>
+        <Text style={TitleStyles.titletext}>{this.props.titleText}</Text>
       </View>
     )
   }

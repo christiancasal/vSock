@@ -4,7 +4,8 @@ import {
   View
 } from 'react-native';
 
-import MainTabbedStyles from './../MainTabbedStyles'
+import MainTabbedStyles from './../_main/MainTabbedStyles';
+import TabTitle from './../_main/TabTitle';
 
 export default class Apartment extends Component {
   constructor(props){
@@ -15,7 +16,7 @@ export default class Apartment extends Component {
   render(){
     return(
       <View style={MainTabbedStyles.container}>
-        <Text>This is the aptView</Text>
+        <TabTitle titleText='Your Apartment'/>
       </View>
     )
   }
