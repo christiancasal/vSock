@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { TabBarIOS } from 'react-native';
 
-import Sock from '../sockView/Sock'
+import Home from '../homeView/Home'
 import Settings from '../settingsView/Settings'
 import Apartment from '../apartmentView/Apartment'
 
@@ -27,7 +27,7 @@ export default class Welcome extends Component {
     }
     if(renderPage === title1){
       return(
-          <Sock />
+          <Home />
       )
     }
     if(renderPage === title2){

@@ -6,9 +6,9 @@ import {
 
 import TabTitle from './../_main/TabTitle';
 import MainTabbedStyles from './../_main/MainTabbedStyles'
-import SockStyles from './styles/SockStyles'
+import HomeStyles from './styles/HomeStyles'
 
-export default class SockViewTitle extends Component {
+export default class HomeViewTitle extends Component {
   constructor(props){
     super(props)
   }
@@ -16,9 +16,9 @@ export default class SockViewTitle extends Component {
 
   render(){
     return(
-      <View style={MainTabbedStyles.container}>
+      <View>
         <TabTitle titleText='Your Door is...'/>
-        <Text style={SockStyles.doorStatusText}>{this.props.doorStatus}</Text>
+        <Text style={HomeStyles.doorStatusText}>{this.props.doorStatusText}</Text>
       </View>
     )
   }
