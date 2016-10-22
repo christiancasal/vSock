@@ -7,11 +7,10 @@ const screenHeight = Dimensions.get('window').height;
 const screenWidth = Dimensions.get('window').width;
 
 export default StyleSheet.create({
-  container: {
-    flex: 1,
-    flexDirection: 'column',
-    backgroundColor: '#DDDDDD',
-    justifyContent:'center',
-    alignItems: 'center'
+  doorStatusText: {
+    fontSize: 16,
+    fontFamily: 'Roboto-Medium',
+    fontWeight: 'bold',
+    color: '#444444'
   }
 })

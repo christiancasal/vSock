@@ -4,7 +4,7 @@ import {
   View
 } from 'react-native';
 
-import MainTabbedStyles from './../MainTabbedStyles'
+import MainTabbedStyles from './../_main/MainTabbedStyles'
 import SockViewTitle from './SockViewTitle'
 
 export default class Sock extends Component {
@@ -20,7 +20,6 @@ export default class Sock extends Component {
     return(
       <View style={MainTabbedStyles.container}>
         <SockViewTitle doorStatus={this.state.doorStatus}/>
-        <Text>This is the sockView</Text>
       </View>
     )
   }

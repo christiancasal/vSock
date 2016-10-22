@@ -4,7 +4,8 @@ import {
   View,
 } from 'react-native';
 
-import MainTabbedStyles from './../MainTabbedStyles'
+import MainTabbedStyles from './../_main/MainTabbedStyles'
+import TabTitle from './../_main/TabTitle';
 
 export default class Settings extends Component {
   constructor(props){
@@ -16,7 +17,7 @@ export default class Settings extends Component {
   render(){
     return(
       <View style={MainTabbedStyles.container}>
-        <Text>This is the settingsView</Text>
+        <TabTitle titleText='Settings'/>
       </View>
     )
   }

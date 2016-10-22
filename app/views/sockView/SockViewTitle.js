@@ -4,6 +4,10 @@ import {
   View
 } from 'react-native';
 
+import TabTitle from './../_main/TabTitle';
+import MainTabbedStyles from './../_main/MainTabbedStyles'
+import SockStyles from './styles/SockStyles'
+
 export default class SockViewTitle extends Component {
   constructor(props){
     super(props)
@@ -12,8 +16,9 @@ export default class SockViewTitle extends Component {
 
   render(){
     return(
-      <View style={{top: -225}}>
-        <Text>The Door is...{this.props.doorStatus}</Text>
+      <View style={MainTabbedStyles.container}>
+        <TabTitle titleText='Your Door is...'/>
+        <Text style={SockStyles.doorStatusText}>{this.props.doorStatus}</Text>
       </View>
     )
   }

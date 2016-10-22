@@ -9,14 +9,13 @@ import {
 
 import InputStyles from '../styles/InputStyles';
 import ButtonStyles from '../styles/ButtonStyles';
-
-import { FBLogin, FBLoginManager } from 'react-native-facebook-login';
-import { GoogleSignin, GoogleSigninButton } from 'react-native-google-signin';
-
-//view components
 import LoginViewStyles from './../styles/LoginViewStyles';
 
-import Title from './../Title';
+import { FBLoginManager } from 'react-native-facebook-login';
+import { GoogleSignin } from 'react-native-google-signin';
+
+
+import Title from '../../_main/Title';
 import Welcome from './../../welcomeView/Welcome';
 
 //initialize bcrypt
@@ -381,7 +380,7 @@ export default class UserHandling extends Component{
     if(!loggedIn && !user){
       return(
         <View style={LoginViewStyles.container}>
-          <Title />
+          <Title titleText='Virtual Sock'/>
             <View >
               {emailInput}
               {passwordInput}
