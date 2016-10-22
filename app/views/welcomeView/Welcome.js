@@ -46,16 +46,18 @@ export default class Welcome extends Component {
     return(
       <TabBarIOS>
           <TabBarIOS.Item
-          title={title0}
-          selected={selectedTab === 'leftTab'}
-          onPress={()=>{
-            this.setState({ selectedTab: 'leftTab' })
+            title={title0}
+            icon={require('../..//assets/icons/groups25.png')}
+            selected={selectedTab === 'leftTab'}
+            onPress={()=>{
+              this.setState({ selectedTab: 'leftTab' })
           }}
           >
             {this.renderContent(title0)}
           </TabBarIOS.Item>
           <TabBarIOS.Item
             title={title1}
+            icon={require('../..//assets/icons/door25.png')}
             selected={selectedTab === 'centerTab'}
             onPress={()=>{
               this.setState({ selectedTab: 'centerTab' })
@@ -65,6 +67,7 @@ export default class Welcome extends Component {
           </TabBarIOS.Item>
           <TabBarIOS.Item
             title={title2}
+            icon={require('../..//assets/icons/settings25.png')}
             selected={selectedTab === 'rightTab'}
             onPress={()=>{
               this.setState({ selectedTab: 'rightTab' })
