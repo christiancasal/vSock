@@ -5,13 +5,13 @@ import {
 } from 'react-native';
 
 import MainTabbedStyles from './../_main/MainTabbedStyles'
-import SockViewTitle from './SockViewTitle'
+import Door from './Door'
 
-export default class Sock extends Component {
+export default class Home extends Component {
   constructor(props){
     super(props)
     this.state = {
-      doorStatus: 'open!'
+      //doorStatus true = door is open false = door is closed
     }
   }
 
@@ -19,7 +19,7 @@ export default class Sock extends Component {
   render(){
     return(
       <View style={MainTabbedStyles.container}>
-        <SockViewTitle doorStatus={this.state.doorStatus}/>
+        <Door />
       </View>
     )
   }

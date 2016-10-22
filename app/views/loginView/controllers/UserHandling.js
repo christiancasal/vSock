@@ -400,7 +400,7 @@ export default class UserHandling extends Component{
         </View>
       )
     } else {
-        return( <Welcome title0='Apartment' title1='Sock' title2='Settings' /> )
+        return( <Welcome title0='Apartment' title1='Home' title2='Settings' /> )
     }
   }
 }

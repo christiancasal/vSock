@@ -14,7 +14,7 @@ export default class Title extends Component {
   }
   render(){
     return(
-      <View style= {TabTitleStyles.container}>
+      <View style={TabTitleStyles.container}>
         <Text style={TabTitleStyles.titletext}>{this.props.titleText}</Text>
       </View>
     )
