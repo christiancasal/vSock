@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import {
-  Text,
   View,
   Image,
-  TouchableHighlight
+  TouchableHighlight,
+  Alert,
 } from 'react-native';
 
 import TabTitle from './../_main/TabTitle';
@@ -20,7 +20,7 @@ export default class Door extends Component {
     this.state = {
       doorSource: '',
       doorStatusText: 'open!',
-      doorIsOpen: false
+      doorIsOpen: true
     }
   }
 
@@ -31,23 +31,43 @@ export default class Door extends Component {
   }
 
   doorSwitch = () => {
-    this.setState({
-      doorIsOpen: !this.state.doorIsOpen
-    })
     if(this.state.doorIsOpen){
-      this.setState({
-        doorSource: doorOpen,
-        doorStatusText: 'open!'
-      })
+      console.log('close door');
+      Alert.alert(
+        'Privacy',
+        'Put A Sock On?',
+        [
+          {text: 'Cancel', onPress: () => this.openSesame() },
+          {text: 'Ok', onPress: () => this.closeSesame() },
+        ]
+      )
     }
-    else{
-      this.setState({
-        doorSource: doorClosed,
-        doorStatusText: 'closed!'
-      })
+    else if(!this.state.doorIsOpen){
+      console.log('open door');
+      Alert.alert(
+        'Privacy',
+        'Are You Sure You Need To Get In?',
+        [
+          {text: 'Cancel', onPress: () => this.closeSesame() },
+          {text: 'Yes!', onPress: () => this.openSesame() },
+        ]
+      )
     }
   }
-
+  openSesame = () => {
+    this.setState({
+      doorSource: doorOpen,
+      doorIsOpen: true,
+      doorStatusText: 'open!'
+    })
+  }
+  closeSesame = () => {
+    this.setState({
+      doorIsOpen: false,
+      doorSource: doorClosed,
+      doorStatusText: 'closed!'
+    })
+  }
   render(){
     return(
       <View>

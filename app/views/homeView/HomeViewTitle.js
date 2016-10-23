@@ -5,8 +5,6 @@ import {
 } from 'react-native';
 
 import TabTitle from './../_main/TabTitle';
-import MainTabbedStyles from './../_main/MainTabbedStyles'
-import HomeStyles from './styles/HomeStyles'
 
 export default class HomeViewTitle extends Component {
   constructor(props){
@@ -17,8 +15,7 @@ export default class HomeViewTitle extends Component {
   render(){
     return(
       <View>
-        <TabTitle titleText='Your Door is...'/>
-        <Text style={HomeStyles.doorStatusText}>{this.props.doorStatusText}</Text>
+        <TabTitle titleText='Your Door is...' doorStatusText={this.props.doorStatusText}/>
       </View>
     )
   }

@@ -5,7 +5,8 @@ import {
 export default StyleSheet.create({
   container:{
     height: 20,
-    marginBottom: 20
+    marginBottom: 20,
+    alignItems: 'center'
   },
   titletext: {
     fontSize: 20,
