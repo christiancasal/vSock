@@ -37,41 +37,37 @@ export default class Door extends Component {
         'Privacy',
         'Put A Sock On?',
         [
-          {text: 'Cancel', onPress: () => this.setState({
-                  doorIsOpen: true,
-                  doorSource: doorOpen,
-                  doorStatusText: 'open!'
-          })},
-          {text: 'Ok', onPress: () => this.setState({
-            doorSource: doorClosed,
-            doorIsOpen: false,
-            doorStatusText: 'closed!'
-          }) },
+          {text: 'Cancel', onPress: () => this.openSesame() },
+          {text: 'Ok', onPress: () => this.closeSesame() },
         ]
       )
     }
-
     else if(!this.state.doorIsOpen){
       console.log('open door');
       Alert.alert(
         'Privacy',
         'Are You Sure You Need To Get In?',
         [
-          {text: 'Cancel', onPress: () => this.setState({
-                  doorIsOpen: false,
-                  doorSource: doorClosed,
-                  doorStatusText: 'closed!'
-          })},
-          {text: 'Yes!', onPress: () => this.setState({
-            doorSource: doorOpen,
-            doorIsOpen: true,
-            doorStatusText: 'open!'
-          }) },
+          {text: 'Cancel', onPress: () => this.closeSesame() },
+          {text: 'Yes!', onPress: () => this.openSesame() },
         ]
       )
     }
   }
-
+  openSesame = () => {
+    this.setState({
+      doorSource: doorOpen,
+      doorIsOpen: true,
+      doorStatusText: 'open!'
+    })
+  }
+  closeSesame = () => {
+    this.setState({
+      doorIsOpen: false,
+      doorSource: doorClosed,
+      doorStatusText: 'closed!'
+    })
+  }
   render(){
     return(
       <View>
