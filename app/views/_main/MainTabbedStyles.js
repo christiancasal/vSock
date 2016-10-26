@@ -13,5 +13,10 @@ export default StyleSheet.create({
     backgroundColor: '#DDDDDD',
     justifyContent:'center',
     alignItems: 'center'
-  }
+  },
+  settingsTitleContainer: {
+    alignItems: 'center',
+    width: screenWidth,
+    padding: 20
+  },
 })

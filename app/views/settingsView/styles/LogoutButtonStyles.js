@@ -6,18 +6,21 @@ import { StyleSheet , Dimensions } from 'react-native';
 const screenHeight = Dimensions.get('window').height;
 const screenWidth = Dimensions.get('window').width;
 
+
 export default StyleSheet.create({
-  container: {
-    flexDirection: 'column',
-    justifyContent: 'center',
+  logoutButton: {
+    marginTop: 15,
+    backgroundColor: '#54E593',
+    height: 40,
+    width: 240,
+    borderRadius: 5,
+    // zIndex: -1,
+    alignItems: 'center',
+    justifyContent:'center'
   },
-  noteTextContainer: {
-    alignItems: 'flex-start',
-    width: screenWidth / 2
-  },
-  noteText: {
+  logoutButtonText: {
     fontFamily: 'Roboto-Medium',
-    margin: 10,
-    padding: 10
+    color: '#EEEEEE',
+    fontWeight: 'bold',
   }
 })

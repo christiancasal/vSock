@@ -8,16 +8,22 @@ const screenWidth = Dimensions.get('window').width;
 
 export default StyleSheet.create({
   container: {
-    flexDirection: 'column',
-    justifyContent: 'center',
+    flexDirection: 'row',
+    alignItems: 'center',
   },
-  noteTextContainer: {
+  pushNoteTextContainer: {
     alignItems: 'flex-start',
     width: screenWidth / 2
   },
-  noteText: {
+  pushNoteText: {
     fontFamily: 'Roboto-Medium',
-    margin: 10,
-    padding: 10
+    marginLeft: 20,
+  },
+  switchButtonContainer: {
+    alignItems: 'flex-end',
+    width: screenWidth / 2
+  },
+  switchButton: {
+    marginRight: 20,
   }
 })
