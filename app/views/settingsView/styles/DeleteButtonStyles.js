@@ -6,18 +6,21 @@ import { StyleSheet , Dimensions } from 'react-native';
 const screenHeight = Dimensions.get('window').height;
 const screenWidth = Dimensions.get('window').width;
 
+
 export default StyleSheet.create({
-  container: {
-    flex: 1,
-    flexDirection: 'column',
-    backgroundColor: '#DDDDDD',
-    justifyContent:'flex-start',
-    alignItems: 'center'
-  },
-  titleContainer: {
+  deleteButton: {
+    marginTop: 15,
+    backgroundColor: 'rgb(255,49,48)',
+    height: 40,
+    width: 240,
+    borderRadius: 5,
+    // zIndex: -1,
     alignItems: 'center',
-    width: screenWidth,
-    padding: 20,
-    marginTop: 30
+    justifyContent:'center'
   },
+  deleteButtonText: {
+    fontFamily: 'Roboto-Medium',
+    color: '#EEEEEE',
+    fontWeight: 'bold',
+  }
 })

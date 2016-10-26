@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import { TabBarIOS } from 'react-native';
 
-import Home from '../homeView/Home'
-import Settings from '../settingsView/Settings'
-import Apartment from '../apartmentView/Apartment'
+import HomeView from '../homeView/HomeView'
+import SettingsView from '../settingsView/SettingsView'
+import ApartmentView from '../apartmentView/ApartmentView'
 
 
 export default class Welcome extends Component {
   constructor(props){
     super(props)
       this.state = {
-        selectedTab: 'centerTab'
+        selectedTab: 'rightTab'
       }
   }
 
@@ -22,17 +22,17 @@ export default class Welcome extends Component {
 
     if(renderPage === title0){
       return(
-          <Apartment />
+          <ApartmentView />
       )
     }
     if(renderPage === title1){
       return(
-          <Home />
+          <HomeView />
       )
     }
     if(renderPage === title2){
       return(
-          <Settings />
+          <SettingsView />
       )
     }
   }

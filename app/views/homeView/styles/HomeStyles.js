@@ -12,5 +12,10 @@ export default StyleSheet.create({
     fontFamily: 'Roboto-Medium',
     fontWeight: 'bold',
     color: '#444444'
+  },
+  imageContainer:{
+    alignItems: 'center',
+    width: screenWidth,
+    padding: 20
   }
 })

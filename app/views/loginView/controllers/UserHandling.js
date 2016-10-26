@@ -17,6 +17,7 @@ import { GoogleSignin } from 'react-native-google-signin';
 
 import Title from '../../_main/Title';
 import Welcome from './../../welcomeView/Welcome';
+import SignInButton from '../SignInButton';
 
 //initialize bcrypt
 import bcrypt from 'react-native-bcrypt';
@@ -58,6 +59,8 @@ export default class UserHandling extends Component{
       validEmailText: '',
       user: true,
       loggedIn: true,
+      // user: false,
+      // loggedIn: false,
     }
     this.itemsRef = firebaseApp.database().ref();
   }
@@ -207,7 +210,7 @@ export default class UserHandling extends Component{
       }
     })
   }
-  signOutFacebook = () => {
+  signOutFacebook = (res) => {
     console.log('this is signin with Facebook');
 
     FBLoginManager.logout((error, data) => {
@@ -220,7 +223,7 @@ export default class UserHandling extends Component{
     })
 
   }
-  signInGoogle = () => {
+  signInGoogle = (res) => {
     GoogleSignin.signIn().then((user) => {
       console.log(user);
       this.setState({user: user});
@@ -236,7 +239,8 @@ export default class UserHandling extends Component{
     })
     .done();
   }
-  signInEmail = () => {
+  signInEmail = (res) => {
+    console.log(res);
     console.log('this is signin with Email');
 
     let { showEmail, showPassword, showSignIn, showCreateAcct, showFacebook, showGoogle, showEmailButton, showForgotPW } = this.state;
@@ -335,30 +339,17 @@ export default class UserHandling extends Component{
   }
   displayFacebookButton = (showFacebook) => {
     if(showFacebook){
-      return <View>
-              <TouchableHighlight style={ButtonStyles.loginFBButton} onPress={() => this.signInFacebook()}
-              >
-                <Text style={ButtonStyles.loginButtonText}>Continue with Facebook</Text>
-              </TouchableHighlight>
-             </View>
+      return <SignInButton buttonStyle={ButtonStyles.loginFBButton} buttonText='Continue with Facebook' type='Facebook' response={(res)=>this.signInFacebook(res)}/>
     }
   }
   displayGoogleButton = (showGoogle) => {
     if(showGoogle){
-      return <View>
-              <TouchableHighlight style={ButtonStyles.loginGOOGButton} onPress={() => this.signInGoogle()}>
-                <Text style={ButtonStyles.loginButtonText}> Sign in with Google</Text>
-              </TouchableHighlight>
-             </View>
+      return <SignInButton buttonStyle={ButtonStyles.loginGOOGButton} buttonText='Sign in with Google' type='Google' response={(res)=>this.signInGoogle(res)}/>
     }
   }
   displayEmailButton = (showEmailButton) => {
     if(showEmailButton){
-      return <View>
-              <TouchableHighlight style={ButtonStyles.loginEmailButton} onPress={() => this.signInEmail()}>
-                <Text style={ButtonStyles.loginButtonText}> Sign in with Email</Text>
-              </TouchableHighlight>
-             </View>
+      return <SignInButton buttonStyle={ButtonStyles.loginEmailButton} buttonText='Sign in with Email' type='Email' response={(res)=>this.signInEmail(res)}/>
     }
   }
 

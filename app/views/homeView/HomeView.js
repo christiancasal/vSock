@@ -7,7 +7,7 @@ import {
 import MainTabbedStyles from './../_main/MainTabbedStyles'
 import Door from './Door'
 
-export default class Home extends Component {
+export default class HomeView extends Component {
   constructor(props){
     super(props)
     this.state = {

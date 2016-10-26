@@ -13,21 +13,17 @@ import HomeViewTitle from './HomeViewTitle'
 
 const doorOpen = require('./../../assets/images/doorOpen.png');
 const doorClosed = require('./../../assets/images/doorClosed.png');
+const cancelAlertMsg = 'Cancel';
+const confirmAlertMsg = 'Yes!';
 
 export default class Door extends Component {
   constructor(props){
     super(props)
     this.state = {
-      doorSource: '',
+      doorSource: doorOpen,
       doorStatusText: 'open!',
       doorIsOpen: true
     }
-  }
-
-  componentWillMount(){
-    this.setState({
-      doorSource: doorOpen
-    })
   }
 
   doorSwitch = () => {
@@ -37,8 +33,8 @@ export default class Door extends Component {
         'Privacy',
         'Put A Sock On?',
         [
-          {text: 'Cancel', onPress: () => this.openSesame() },
-          {text: 'Ok', onPress: () => this.closeSesame() },
+          {text: cancelAlertMsg, onPress: () => this.openSesame() },
+          {text: confirmAlertMsg, onPress: () => this.closeSesame() },
         ]
       )
     }
@@ -48,8 +44,8 @@ export default class Door extends Component {
         'Privacy',
         'Are You Sure You Need To Get In?',
         [
-          {text: 'Cancel', onPress: () => this.closeSesame() },
-          {text: 'Yes!', onPress: () => this.openSesame() },
+          {text: cancelAlertMsg, onPress: () => this.closeSesame() },
+          {text: confirmAlertMsg, onPress: () => this.openSesame() },
         ]
       )
     }
@@ -71,10 +67,12 @@ export default class Door extends Component {
   render(){
     return(
       <View>
-      <HomeViewTitle doorStatusText={this.state.doorStatusText}/>
-        <TouchableHighlight onPress={() => this.doorSwitch()} underlayColor='transparent'>
-          <Image style={{maxWidth:250, maxHeight: 425}} source={this.state.doorSource}/>
-        </TouchableHighlight>
+        <HomeViewTitle doorStatusText={this.state.doorStatusText}/>
+        <View style={HomeStyles.imageContainer}>
+          <TouchableHighlight onPress={() => this.doorSwitch()} underlayColor='transparent'>
+            <Image style={{maxWidth:250, maxHeight: 425}} source={this.state.doorSource}/>
+          </TouchableHighlight>
+        </View>
       </View>
     )
   }
