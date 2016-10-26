@@ -7,21 +7,24 @@ import {
 
 import LogoutButtonStyles from './styles/LogoutButtonStyles';
 
-export default class LogoutButton extends Component {
+export default class SettingsButton extends Component {
   constructor(props){
     super(props)
       this.state = {
 
       }
   }
-  logOutAllAccts = () => {
-    console.log('this is logOutAllAccts');
+  buttonResponse = () => {
+    let obj = {
+      type: this.props.type
+    }
+    this.props.response(obj)
   }
   render(){
     return(
       <View>
-        <TouchableHighlight style={LogoutButtonStyles.logoutButton} onPress={() => this.logOutAllAccts()}>
-          <Text style={LogoutButtonStyles.logoutButtonText}>Logout All Accounts</Text>
+        <TouchableHighlight style={this.props.buttonStyle} onPress={() => this.buttonResponse()}>
+          <Text style={this.props.textStyle}>{this.props.buttonText}</Text>
         </TouchableHighlight>
       </View>
     )

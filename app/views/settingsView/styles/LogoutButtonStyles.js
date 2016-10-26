@@ -10,7 +10,7 @@ const screenWidth = Dimensions.get('window').width;
 export default StyleSheet.create({
   logoutButton: {
     marginTop: 15,
-    backgroundColor: '#54E593',
+    backgroundColor: 'rgb(255,149,0)',
     height: 40,
     width: 240,
     borderRadius: 5,

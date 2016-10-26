@@ -18,8 +18,9 @@ export default class ApartmentView extends Component {
   render(){
     return(
       <View style={MainTabbedStyles.container}>
-        <TabTitle titleText='Your Apartment'/>
-
+        <View style={MainTabbedStyles.titleContainer}>
+          <TabTitle titleText='Your Apartment'/>
+        </View>
       </View>
     )
   }

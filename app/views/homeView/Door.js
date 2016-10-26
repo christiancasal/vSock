@@ -67,10 +67,12 @@ export default class Door extends Component {
   render(){
     return(
       <View>
-      <HomeViewTitle doorStatusText={this.state.doorStatusText}/>
-        <TouchableHighlight onPress={() => this.doorSwitch()} underlayColor='transparent'>
-          <Image style={{maxWidth:250, maxHeight: 425}} source={this.state.doorSource}/>
-        </TouchableHighlight>
+        <HomeViewTitle doorStatusText={this.state.doorStatusText}/>
+        <View style={HomeStyles.imageContainer}>
+          <TouchableHighlight onPress={() => this.doorSwitch()} underlayColor='transparent'>
+            <Image style={{maxWidth:250, maxHeight: 425}} source={this.state.doorSource}/>
+          </TouchableHighlight>
+        </View>
       </View>
     )
   }
