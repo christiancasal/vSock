@@ -8,7 +8,7 @@ export default StyleSheet.create({
     marginBottom: 20
   },
   titletext: {
-    fontSize: 20,
+    fontSize: 28,
     fontFamily: 'Roboto-Medium',
     fontWeight: 'bold',
     color: '#444444'

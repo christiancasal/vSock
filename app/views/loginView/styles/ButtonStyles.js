@@ -37,7 +37,8 @@ export default StyleSheet.create({
     fontFamily: 'Roboto-Medium',
     color: '#EEEEEE',
     fontWeight: 'bold',
-    padding: 8
+    padding: 8,
+    fontSize:16
   },
   loginEmailButton: {
     marginTop: 15,
@@ -56,7 +57,7 @@ export default StyleSheet.create({
     marginBottom: 10
   },
   signInButton: {
-    backgroundColor: 'green',
+    backgroundColor: 'rgb(76,217,100)',
     width: 100,
     height: 50,
     marginLeft: 5,
@@ -66,7 +67,7 @@ export default StyleSheet.create({
     alignItems: 'center'
   },
   createAcctButton: {
-    backgroundColor: 'green',
+    backgroundColor: 'rgb(76,217,100)',
     width: 100,
     height: 50,
     marginLeft: 5,
@@ -83,7 +84,7 @@ export default StyleSheet.create({
     marginBottom: 10
   },
   forgotButton: {
-    backgroundColor: 'green',
+    backgroundColor: 'rgb(76,217,100)',
     width: 240,
     height: 50,
     borderRadius: 5,

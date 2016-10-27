@@ -12,11 +12,14 @@ export default StyleSheet.create({
     flexDirection: 'column',
     backgroundColor: '#DDDDDD',
     justifyContent:'flex-start',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   titleContainer: {
     alignItems: 'center',
     width: screenWidth,
+    // borderWidth: 1,
+    // borderColor: 'black',
+    // borderStyle: 'solid',
     padding: 20,
     marginTop: 30
   },
