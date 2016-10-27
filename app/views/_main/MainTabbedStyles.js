@@ -15,12 +15,14 @@ export default StyleSheet.create({
     alignItems: 'center',
   },
   titleContainer: {
+    // flexDirection: 'row',
+    justifyContent:'center',
     alignItems: 'center',
     width: screenWidth,
-    // borderWidth: 1,
-    // borderColor: 'black',
-    // borderStyle: 'solid',
-    padding: 20,
-    marginTop: 30
+    borderBottomWidth: 1,
+    borderColor: '#AAAAAA',
+    borderStyle: 'solid',
+    padding: 5,
+    marginTop: 20
   },
 })

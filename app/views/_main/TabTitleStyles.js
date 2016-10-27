@@ -4,7 +4,7 @@ import {
 
 export default StyleSheet.create({
   container:{
-    marginBottom: 20,
+    marginBottom: 5,
     alignItems: 'center',
   },
   titletext: {

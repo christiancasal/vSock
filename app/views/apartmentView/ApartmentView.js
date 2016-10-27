@@ -19,7 +19,7 @@ export default class ApartmentView extends Component {
     return(
       <View style={MainTabbedStyles.container}>
         <View style={MainTabbedStyles.titleContainer}>
-          <TabTitle titleText='Your Apartment'/>
+          <TabTitle titleText='Apartment'/>
         </View>
       </View>
     )

@@ -11,7 +11,13 @@ export default StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     marginTop: 5,
-    marginBottom: 5
+    marginBottom: 5,
+    paddingTop: 5,
+    paddingBottom: 5,
+    borderBottomWidth: 1,
+    borderTopWidth: 1,
+    borderColor: '#AAAAAA',
+    borderStyle: 'solid',
   },
   pushNoteTextContainer: {
     alignItems: 'flex-start',
