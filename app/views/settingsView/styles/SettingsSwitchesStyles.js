@@ -10,6 +10,14 @@ export default StyleSheet.create({
   container: {
     flexDirection: 'row',
     alignItems: 'center',
+    marginTop: 5,
+    marginBottom: 5,
+    paddingTop: 5,
+    paddingBottom: 5,
+    borderBottomWidth: 1,
+    borderTopWidth: 1,
+    borderColor: '#AAAAAA',
+    borderStyle: 'solid',
   },
   pushNoteTextContainer: {
     alignItems: 'flex-start',
@@ -18,6 +26,9 @@ export default StyleSheet.create({
   pushNoteText: {
     fontFamily: 'Roboto-Medium',
     marginLeft: 20,
+    color: '#444444',
+    fontWeight: 'bold',
+    fontSize: 14,
   },
   switchButtonContainer: {
     alignItems: 'flex-end',

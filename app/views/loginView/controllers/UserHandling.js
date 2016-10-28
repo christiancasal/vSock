@@ -40,8 +40,8 @@ export default class UserHandling extends Component{
   constructor(props){
     super(props);
     this.state = {
-      email: 'Email',
-      password:'Password',
+      email: ' Email',
+      password:' Password',
       //uncommented for testing - moves to welcomeView
       // user: null,
       // loggedIn: '',
@@ -152,7 +152,7 @@ export default class UserHandling extends Component{
     return passwordVal.test(password)
   }
 
-  setUpResetPassword = () => {
+  setUpResetPassword = (res) => {
     this.setState({
       showEmail: true,
       showPassword: false,
@@ -166,10 +166,12 @@ export default class UserHandling extends Component{
       forgotPWText: 'Password Reset'
     })
     console.log('this is reset password');
+    console.log(res);
     return;
   }
-  confirmResetPassword = () => {
+  confirmResetPassword = (res) => {
     console.log('this is confirm reset password');
+    console.log(res);
       if(this.state.validEmail){
         let auth = firebaseApp.auth();
 
@@ -187,8 +189,9 @@ export default class UserHandling extends Component{
         this.signInEmail()
     }
   }
-  signInFacebook = () => {
+  signInFacebook = (res) => {
     console.log('this is signin with Facebook');
+    console.log(res);
     FBLoginManager.setLoginBehavior(FBLoginManager.LoginBehaviors.Native)
 
     // FBLoginManager.loginWithPermissions(["email","user_friends"], (error, data) => {
@@ -323,18 +326,10 @@ export default class UserHandling extends Component{
   }
   displayForgotPasswordButton = (showForgotPW, confirmForgotPW) => {
     if(showForgotPW && !confirmForgotPW){
-      return  <View style={ButtonStyles.forgotContainer}>
-                <TouchableHighlight style={ButtonStyles.forgotButton} onPress={() => this.setUpResetPassword()}>
-                  <Text style={ButtonStyles.forgotButtonText}>{this.state.forgotPWText}</Text>
-                </TouchableHighlight>
-              </View>
+      return  <SignInButton buttonStyle={ButtonStyles.forgotButton} buttonText={this.state.forgotPWText} type='Forgot' response={(res)=>this.setUpResetPassword(res)}/>
       }
     if(showForgotPW && confirmForgotPW) {
-      return <View style={ButtonStyles.forgotContainer}>
-                <TouchableHighlight style={ButtonStyles.forgotButton} onPress={() => this.confirmResetPassword()}>
-                  <Text style={ButtonStyles.forgotButtonText}>{this.state.forgotPWText}</Text>
-                </TouchableHighlight>
-              </View>
+      return <SignInButton buttonStyle={ButtonStyles.forgotButton} buttonText={this.state.forgotPWText} type='ForgotConfirm' response={(res)=>this.confirmResetPassword(res)}/>
     }
   }
   displayFacebookButton = (showFacebook) => {

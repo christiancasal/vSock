@@ -22,5 +22,7 @@ export default StyleSheet.create({
     fontFamily: 'Roboto-Medium',
     color: '#EEEEEE',
     fontWeight: 'bold',
+    padding: 8,
+    fontSize:16
   }
 })

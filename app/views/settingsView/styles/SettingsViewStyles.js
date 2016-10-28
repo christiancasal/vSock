@@ -11,13 +11,4 @@ export default StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'center',
   },
-  noteTextContainer: {
-    alignItems: 'flex-start',
-    width: screenWidth / 2
-  },
-  noteText: {
-    fontFamily: 'Roboto-Medium',
-    margin: 10,
-    padding: 10
-  }
 })

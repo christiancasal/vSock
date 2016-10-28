@@ -16,7 +16,7 @@ export default class HomeViewTitle extends Component {
   render(){
     return(
       <View style={MainTabbedStyles.titleContainer}>
-        <TabTitle titleText='Your Door is...' doorStatusText={this.props.doorStatusText}/>
+        <TabTitle titleText='Door ' doorStatusText={this.props.doorStatusText}/>
       </View>
     )
   }
