@@ -6,6 +6,7 @@ import {
   Alert
 } from 'react-native';
 
+
 import MainTabbedStyles from './../_main/MainTabbedStyles';
 import TabTitle from './../_main/TabTitle';
 import SettingsButton from './SettingsButton';
@@ -13,6 +14,7 @@ import SettingsSwitches from './SettingsSwitches';
 import SettingsViewStyles from './styles/SettingsViewStyles';
 import LogoutButtonStyles from './styles/LogoutButtonStyles';
 import DeleteButtonStyles from './styles/DeleteButtonStyles';
+
 
 const screenHeight = Dimensions.get('window').height;
 const screenWidth = Dimensions.get('window').width;
@@ -22,7 +24,9 @@ export default class SettingsView extends Component {
     super(props)
 
   }
+  componentDidMount(){
 
+  }
   pushResponse = (ref) => {
     console.log('this is the escape for PushSettings');
     console.log(ref);

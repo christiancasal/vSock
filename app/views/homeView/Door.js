@@ -4,6 +4,7 @@ import {
   Image,
   TouchableHighlight,
   Alert,
+  Dimensions
 } from 'react-native';
 
 import TabTitle from './../_main/TabTitle';
@@ -15,6 +16,9 @@ const doorOpen = require('./../../assets/images/doorOpen.png');
 const doorClosed = require('./../../assets/images/doorClosed.png');
 const cancelAlertMsg = 'Cancel';
 const confirmAlertMsg = 'Yes!';
+
+const screenHeight = Dimensions.get('window').height;
+const screenWidth = Dimensions.get('window').width;
 
 export default class Door extends Component {
   constructor(props){
@@ -67,7 +71,6 @@ export default class Door extends Component {
   render(){
     return(
       <View>
-        <HomeViewTitle doorStatusText={this.state.doorStatusText}/>
         <View style={HomeStyles.imageContainer}>
           <TouchableHighlight onPress={() => this.doorSwitch()} underlayColor='transparent'>
             <Image style={{maxWidth:250, maxHeight: 425}} source={this.state.doorSource}/>

@@ -6,6 +6,7 @@ import {
 
 import MainTabbedStyles from './../_main/MainTabbedStyles'
 import Door from './Door'
+import TabTitle from './../_main/TabTitle';
 
 export default class HomeView extends Component {
   constructor(props){
@@ -19,6 +20,9 @@ export default class HomeView extends Component {
   render(){
     return(
       <View style={MainTabbedStyles.container}>
+        <View style={MainTabbedStyles.titleContainer}>
+          <TabTitle titleText='Door '/>
+        </View>
         <Door />
       </View>
     )
