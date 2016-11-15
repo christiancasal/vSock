@@ -45,6 +45,8 @@
 		AA5668E71D8DE0180033AA7D /* GoogleInterchangeUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA5668E61D8DE0180033AA7D /* GoogleInterchangeUtilities.framework */; };
 		AA5668F61D8DE4560033AA7D /* libRNGoogleSignin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AA5668F51D8DE4280033AA7D /* libRNGoogleSignin.a */; };
 		AABBA1611DB59711007EBABE /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AABBA1601DB59711007EBABE /* Roboto-Medium.ttf */; };
+		AAF2FB061DDA9E9F00A3776F /* RNUnifiedContacts.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF2FB041DDA9E9F00A3776F /* RNUnifiedContacts.swift */; };
+		AAF2FB071DDA9E9F00A3776F /* RNUnifiedContactsBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = AAF2FB051DDA9E9F00A3776F /* RNUnifiedContactsBridge.m */; };
 		BF07B7D8A70D1795CD5C0BE2 /* libPods-virtualSockTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E195ECD23241A82B34763C60 /* libPods-virtualSockTests.a */; };
 		C14A800E5715E01B2CB62945 /* libPods-virtualSock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 965E8C2577A342CAD1D1A530 /* libPods-virtualSock.a */; };
 /* End PBXBuildFile section */
@@ -193,6 +195,9 @@
 		AA5668E61D8DE0180033AA7D /* GoogleInterchangeUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleInterchangeUtilities.framework; path = Pods/GoogleInterchangeUtilities/Frameworks/GoogleInterchangeUtilities.framework; sourceTree = "<group>"; };
 		AA5668F01D8DE4280033AA7D /* RNGoogleSignin.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNGoogleSignin.xcodeproj; path = "../node_modules/react-native-google-signin/ios/RNGoogleSignin.xcodeproj"; sourceTree = "<group>"; };
 		AABBA1601DB59711007EBABE /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Medium.ttf"; sourceTree = "<group>"; };
+		AAF2FB031DDA9E9F00A3776F /* RNUnifiedContacts-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RNUnifiedContacts-Bridging-Header.h"; sourceTree = "<group>"; };
+		AAF2FB041DDA9E9F00A3776F /* RNUnifiedContacts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RNUnifiedContacts.swift; sourceTree = "<group>"; };
+		AAF2FB051DDA9E9F00A3776F /* RNUnifiedContactsBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNUnifiedContactsBridge.m; sourceTree = "<group>"; };
 		AF6BBE971AD38E6DE393D884 /* Pods-virtualSockTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-virtualSockTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-virtualSockTests/Pods-virtualSockTests.debug.xcconfig"; sourceTree = "<group>"; };
 		E195ECD23241A82B34763C60 /* libPods-virtualSockTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-virtualSockTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC38DF345A83AD922FE1665F /* Pods-virtualSockTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-virtualSockTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-virtualSockTests/Pods-virtualSockTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -393,6 +398,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				AAF2FB021DDA9E9F00A3776F /* RNUnifiedContacts */,
 				AABBA1601DB59711007EBABE /* Roboto-Medium.ttf */,
 				AA02D5781D8D0690005472D7 /* GoogleAppUtilities.framework */,
 				AA47EC3E1D8D03F300882227 /* GoogleAuthUtilities.framework */,
@@ -443,6 +449,16 @@
 				AA5668F51D8DE4280033AA7D /* libRNGoogleSignin.a */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		AAF2FB021DDA9E9F00A3776F /* RNUnifiedContacts */ = {
+			isa = PBXGroup;
+			children = (
+				AAF2FB031DDA9E9F00A3776F /* RNUnifiedContacts-Bridging-Header.h */,
+				AAF2FB041DDA9E9F00A3776F /* RNUnifiedContacts.swift */,
+				AAF2FB051DDA9E9F00A3776F /* RNUnifiedContactsBridge.m */,
+			);
+			path = RNUnifiedContacts;
 			sourceTree = "<group>";
 		};
 		D6102344943691F0964D9004 /* Frameworks */ = {
@@ -829,7 +845,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AAF2FB071DDA9E9F00A3776F /* RNUnifiedContactsBridge.m in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
+				AAF2FB061DDA9E9F00A3776F /* RNUnifiedContacts.swift in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -861,6 +879,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = AF6BBE971AD38E6DE393D884 /* Pods-virtualSockTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -880,6 +899,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = FC38DF345A83AD922FE1665F /* Pods-virtualSockTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
@@ -926,6 +946,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = virtualSock;
 				PROVISIONING_PROFILE = "";
+				SWIFT_VERSION = 3.0.1;
 			};
 			name = Debug;
 		};
@@ -962,6 +983,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = virtualSock;
 				PROVISIONING_PROFILE = "";
+				SWIFT_VERSION = 3.0.1;
 			};
 			name = Release;
 		};

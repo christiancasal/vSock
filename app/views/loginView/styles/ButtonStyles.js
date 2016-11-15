@@ -76,6 +76,15 @@ export default StyleSheet.create({
     justifyContent:'center',
     alignItems: 'center'
   },
+  addRoomButton: {
+    backgroundColor: 'rgb(76,217,100)',
+    width: 240,
+    height: 50,
+    borderRadius: 5,
+    marginTop: 5,
+    justifyContent:'center',
+    alignItems: 'center'
+  },
   forgotContainer:{
     // backgroundColor: 'white',
     flexDirection: 'row',

@@ -15,6 +15,7 @@ export default StyleSheet.create({
   },
   imageContainer:{
     alignItems: 'center',
+    justifyContent: 'center',
     width: screenWidth,
     padding: 20
   }
