@@ -3,17 +3,18 @@ import {
   Text,
   View,
   Modal,
-  TouchableHighlight
 } from 'react-native';
 
 import Contacts from 'react-native-unified-contacts';
 
 import MainTabbedStyles from './../_main/MainTabbedStyles';
+import SignInButton from './../loginView/SignInButton';
 
 import TabTitle from './../_main/TabTitle';
-import SignInButton from './../loginView/SignInButton';
 import ButtonStyles from './../loginView/styles/ButtonStyles';
+import AddRoomModal from './AddRoomModal';
 
+//TODO: check modal tag - see if you need onRequestClose
 
 export default class ApartmentView extends Component {
   constructor(props){
@@ -25,6 +26,7 @@ export default class ApartmentView extends Component {
     }
   }
   setModalVisible(visible){
+    console.log('Flip Modal');
     this.setState({
       modalVisible: visible,
     })
@@ -62,28 +64,21 @@ export default class ApartmentView extends Component {
     });
   }
 
+
   render(){
     return(
       <View style={MainTabbedStyles.container}>
-        <Modal
-          animationType={this.state.animationType}
-          transparent={this.state.transparent}
-          visible={this.state.modalVisible}
-          onRequestClose={() => {alert("Modal has been closed.")}}
-          >
-            <View style={{marginTop: 22}}>
-             <View>
-               <Text>Hello World!</Text>
-
-               <TouchableHighlight onPress={() => {
-                 this.setModalVisible(!this.state.modalVisible)
-               }}>
-                 <Text>Hide Modal</Text>
-               </TouchableHighlight>
-
-             </View>
-            </View>
-        </Modal>
+          <Modal
+            animationType={this.state.animationType}
+            transparent={this.state.transparent}
+            visible={this.state.modalVisible}
+            onRequestClose={() => {alert("Modal has been closed.")}}
+            >
+              <AddRoomModal modalStyle={MainTabbedStyles} modalResponse={(ref)=>this.setModalVisible(ref)}
+              modalTitleStyle={MainTabbedStyles.titleContainer}
+              modalTitle={<TabTitle titleText='Add Room'/>}
+              visible={this.state.modalVisible} />
+          </Modal>
         <View style={MainTabbedStyles.titleContainer}>
           <TabTitle titleText='Apartment'/>
         </View>
