@@ -26,6 +26,12 @@ export default StyleSheet.create({
     marginBottom: 0,
     paddingLeft:5,
   },
+  inputRoom: {
+    backgroundColor: '#EEEEEE',
+    marginTop: 15,
+    marginBottom: 0,
+    paddingLeft:5,
+  },
   inputEmailTextCheck: {
     fontSize: 10,
     color: 'red'

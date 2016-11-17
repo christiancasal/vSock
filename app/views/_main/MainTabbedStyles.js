@@ -14,6 +14,17 @@ export default StyleSheet.create({
     justifyContent:'flex-start',
     alignItems: 'center',
   },
+  colContainer: {
+    flex: 1,
+    flexDirection: 'column',
+    backgroundColor: '#DDDDDD',
+    justifyContent:'center',
+    alignItems: 'center',
+  },
+  rowContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
   titleContainer: {
     // flexDirection: 'row',
     justifyContent:'center',
