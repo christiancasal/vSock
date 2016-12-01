@@ -14,21 +14,68 @@ export default class AddRoomModal extends Component {
     super(props)
 
     this.state = {
-      roomName: 'Room Name'
+      roomName: 'Room Name',
+      validRoom: false,
+      validRoomText: '',
+      showNext: false,
+      showContacts: false
     }
   }
-  validate_room = (roomName) => {
-    this.setState({
-      roomName: roomName
-    })
+  componentWillMount(){
+
   }
+  validate_room = (roomName) => {
+    let roomVal = /^[a-zA-Z0-9]{4,15}$/;
+
+    if(roomVal.test(roomName)){
+      this.setState({
+        roomName: roomName,
+        validRoom: true,
+        showNext: true,
+        validRoomText: 'Room is valid!'
+      })
+    }
+    else{
+      this.setState({
+        roomName: roomName,
+        validRoom: false,
+        validRoomText: 'Room is NOT valid!'
+      })
+    }
+  }
+
   closeModal = (ref) => {
     console.log('Modal Closed!');
+    console.log(ref);
     this.props.modalResponse(!this.props.visible);
   }
 
+  roomSaved = () =>{
+    if(this.state.validRoom && this.state.showNext){
+      return(
+        <SignInButton type='saveRoomName' buttonStyle={ButtonStyles.addRoomButton} buttonText='Next' response={()=>this.hideNextShowContacts()}/>
+      )
+    }
+  }
+  hideNextShowContacts = () => {
+    this.setState({
+      showContacts: true,
+      showNext: false
+    })
+  }
+  displayContactsButton = () => {
+    if(this.state.showContacts){
+      return(
+        <SignInButton type='showContacts' buttonStyle={ButtonStyles.addRoomButton} buttonText='Contacts' response={(ref)=>this.closeModal(ref)}/>
+      )
+    }
+  }
+
   render(){
-    let {roomName} = this.state
+    let {roomName, showContacts, validRoom} = this.state
+    let checkRoom = this.roomSaved();
+    let checkContacts = this.displayContactsButton();
+
     return(
       <View style={this.props.modalStyle.container}>
          <View style={this.props.modalTitleStyle}>
@@ -42,7 +89,10 @@ export default class AddRoomModal extends Component {
              autoCorrect={false}
              autoCapitalize="none"
            />
-           <SignInButton type='closeModal' buttonStyle={ButtonStyles.addRoomButton} buttonText='Close' response={(ref)=>this.closeModal(ref)}/>
+           {checkRoom}
+           {checkContacts}
+           <SignInButton type='addRoomConfirm' buttonStyle={ButtonStyles.addRoomButton} buttonText='Add Room' response={(ref)=>this.closeModal(ref)}/>
+           <SignInButton type='esc' buttonStyle={ButtonStyles.escButton} buttonText='Close' response={(ref)=>this.closeModal(ref)}/>
         </View>
       </View>
     )
