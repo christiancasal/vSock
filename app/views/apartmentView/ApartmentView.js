@@ -23,17 +23,23 @@ export default class ApartmentView extends Component {
         modalVisible: false,
         animationType: "fade",
         transparent: false,
+        contacts: null,
     }
   }
   setModalVisible(visible){
-    console.log('Flip Modal');
+    console.log('Close Modal');
     this.setState({
       modalVisible: visible,
     })
   }
-
+  setContacts(contacts){
+    this.setState({
+      contacts: contacts,
+    });
+  }
   addRoom = (ref) => {
     console.log(ref);
+    console.log('this is add room');
     Contacts.userCanAccessContacts( (userCanAccessContacts) => {
       if (userCanAccessContacts) {
         this.setState({
@@ -46,6 +52,7 @@ export default class ApartmentView extends Component {
           }
           else {
             console.log(contacts);
+            this.setContacts(contacts);
             this.setModalVisible(true)
           }
         });
@@ -77,12 +84,15 @@ export default class ApartmentView extends Component {
               <AddRoomModal modalStyle={MainTabbedStyles} modalResponse={(ref)=>this.setModalVisible(ref)}
               modalTitleStyle={MainTabbedStyles.titleContainer}
               modalTitle={<TabTitle titleText='Add Room'/>}
-              visible={this.state.modalVisible} />
+              visible={this.state.modalVisible}
+              contacts={this.state.contacts}
+            />
+
           </Modal>
         <View style={MainTabbedStyles.titleContainer}>
           <TabTitle titleText='Apartment'/>
         </View>
-        <SignInButton type='addRoom' buttonStyle={ButtonStyles.addRoomButton} buttonText='Add Room' response={(ref)=>this.addRoom(ref)}/>
+        <SignInButton type='addRoom' buttonStyle={ButtonStyles.addRoomButton} buttonText='Add New Room' response={(ref)=>this.addRoom(ref)}/>
       </View>
     )
   }

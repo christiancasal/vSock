@@ -85,6 +85,15 @@ export default StyleSheet.create({
     justifyContent:'center',
     alignItems: 'center'
   },
+  escButton: {
+    backgroundColor: 'rgb(255,59,48)',
+    width: 240,
+    height: 50,
+    borderRadius: 5,
+    marginTop: 5,
+    justifyContent:'center',
+    alignItems: 'center'
+  },
   forgotContainer:{
     // backgroundColor: 'white',
     flexDirection: 'row',
