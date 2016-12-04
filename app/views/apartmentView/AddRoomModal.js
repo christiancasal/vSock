@@ -8,6 +8,8 @@ import {
 import SignInButton from './../loginView/SignInButton';
 import ButtonStyles from './../loginView/styles/ButtonStyles';
 import InputStyles from './../loginView/styles/InputStyles';
+import ContactList from './ContactList';
+import TabTitle from './../_main/TabTitle';
 
 export default class AddRoomModal extends Component {
   constructor(props){
@@ -18,11 +20,21 @@ export default class AddRoomModal extends Component {
       validRoom: false,
       validRoomText: '',
       showNext: false,
-      showContacts: false
+      showContacts: false,
+      roomConfirm: false,
+      modalVisible: false,
+      animationType: "fade",
+      transparent: false,
     }
   }
   componentWillMount(){
 
+  }
+  setContactModalVisible(visible){
+    console.log('Close Modal');
+    this.setState({
+      modalVisible: visible,
+    })
   }
   validate_room = (roomName) => {
     let roomVal = /^[a-zA-Z0-9]{4,15}$/;
@@ -53,28 +65,40 @@ export default class AddRoomModal extends Component {
   roomSaved = () =>{
     if(this.state.validRoom && this.state.showNext){
       return(
-        <SignInButton type='saveRoomName' buttonStyle={ButtonStyles.addRoomButton} buttonText='Next' response={()=>this.hideNextShowContacts()}/>
+        <SignInButton type='saveRoomName' buttonStyle={ButtonStyles.addRoomButton} buttonText='Next' response={()=>this.hideNextShowContactsButton()}/>
       )
     }
   }
-  hideNextShowContacts = () => {
+  hideNextShowContactsButton = () => {
     this.setState({
       showContacts: true,
-      showNext: false
+      showNext: false,
     })
+  }
+  displayRoomConfirm = () => {
+    if(this.state.roomConfirm){
+      return(
+        <SignInButton type='addRoomConfirm' buttonStyle={ButtonStyles.addRoomButton} buttonText='Add Room!' response={(ref)=>this.closeModal(ref)}/>
+      )
+    }
   }
   displayContactsButton = () => {
     if(this.state.showContacts){
       return(
-        <SignInButton type='showContacts' buttonStyle={ButtonStyles.addRoomButton} buttonText='Contacts' response={(ref)=>this.closeModal(ref)}/>
+        <SignInButton type='Contacts' buttonStyle={ButtonStyles.addRoomButton} buttonText='Contacts' response={(ref)=>this.displayContacts(ref)}/>
       )
     }
   }
-
+  displayContacts = () => {
+    this.setState({
+      modalVisible: true
+    })
+  }
   render(){
     let {roomName, showContacts, validRoom} = this.state
     let checkRoom = this.roomSaved();
     let checkContacts = this.displayContactsButton();
+    let roomConfirm = this.displayRoomConfirm();
 
     return(
       <View style={this.props.modalStyle.container}>
@@ -91,8 +115,19 @@ export default class AddRoomModal extends Component {
            />
            {checkRoom}
            {checkContacts}
-           <SignInButton type='addRoomConfirm' buttonStyle={ButtonStyles.addRoomButton} buttonText='Add Room' response={(ref)=>this.closeModal(ref)}/>
+           {roomConfirm}
            <SignInButton type='esc' buttonStyle={ButtonStyles.escButton} buttonText='Close' response={(ref)=>this.closeModal(ref)}/>
+           <Modal
+             animationType={this.state.animationType}
+             transparent={this.state.transparent}
+             visible={this.state.modalVisible}
+             onRequestClose={() => {alert("Modal has been closed.")}}>
+             <ContactList contactModalStyle={this.props.modalStyle}
+             contactModalResponse={(ref)=>this.setContactModalVisible(ref)}
+             contactModalTitle={<TabTitle titleText='Choose Contacts'/>}
+             visible={this.state.modalVisible}
+             contacts={this.props.contacts}/>
+            </Modal>
         </View>
       </View>
     )

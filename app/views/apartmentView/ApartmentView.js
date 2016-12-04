@@ -28,6 +28,7 @@ export default class ApartmentView extends Component {
   }
   setModalVisible(visible){
     console.log('Close Modal');
+    console.log(this.state.visible);
     this.setState({
       modalVisible: visible,
     })
