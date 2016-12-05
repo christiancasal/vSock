@@ -7,6 +7,7 @@ import {
 
 import SignInButton from './../loginView/SignInButton';
 import ButtonStyles from './../loginView/styles/ButtonStyles';
+import ContactStyles from './styles/ContactStyles';
 import Contact from './Contact';
 
 export default class ContactList extends Component {
@@ -34,7 +35,7 @@ export default class ContactList extends Component {
         if (numbers.label !== "home fax") {
           return [
             <View>
-              <Contact name={contacts.fullName}
+              <Contact contactStyle={contactModalStyle}              name={contacts.fullName}
               numberType={numbers.label}
               numberString={numbers.stringValue}
               numberValue={numbers.digits}
@@ -57,8 +58,10 @@ export default class ContactList extends Component {
         </View>
         <ScrollView style={contactModalTitle.colContainer}>
           {userContacts}
-          <SignInButton type='esc' buttonStyle={ButtonStyles.escButton} buttonText='Close' response={(ref)=>this.closeModal(ref)}/>
         </ScrollView>
+        <View style={ContactStyles.clCloseContainer}>
+          <SignInButton type='esc' buttonStyle={ButtonStyles.escButton} buttonText='Close' response={(ref)=>this.closeModal(ref)}/>
+        </View>
       </View>
     )
   }
