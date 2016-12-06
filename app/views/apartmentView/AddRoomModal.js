@@ -72,6 +72,7 @@ export default class AddRoomModal extends Component {
   hideNextShowContactsButton = () => {
     this.setState({
       showContacts: true,
+      // modalVisible: true,
       showNext: false,
     })
   }
