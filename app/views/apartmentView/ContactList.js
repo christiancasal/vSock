@@ -19,19 +19,18 @@ export default class ContactList extends Component {
     }
   }
   closeModal = (ref) => {
-    console.log('Modal Closed!');
+    console.log('Modal Closed in Contact list!');
     console.log(ref);
     this.props.contactModalResponse(!this.props.visible);
   }
   render(){
-    console.log(this.props);
     let {contactModalStyle, contactModalTitle} = this.props;
 
     let userContacts = this.props.contacts.map((contacts) => {
-      console.log(contacts.phoneNumbers);
+      // console.log(contacts.phoneNumbers);
 
       let userNumbers = contacts.phoneNumbers.map((numbers) => {
-        console.log(numbers)
+        // console.log(numbers)
         if (numbers.label !== "home fax") {
           return [
             <View>

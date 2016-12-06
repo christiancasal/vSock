@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { TabBarIOS } from 'react-native';
+import { TabBarIOS, AsyncStorage } from 'react-native';
 
 import HomeView from '../homeView/HomeView'
 import SettingsView from '../settingsView/SettingsView'
