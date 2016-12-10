@@ -3,6 +3,7 @@ import {
   View,
   Text,
   ScrollView,
+  AsyncStorage
 } from 'react-native';
 
 import SignInButton from './../loginView/SignInButton';
@@ -10,17 +11,26 @@ import ButtonStyles from './../loginView/styles/ButtonStyles';
 import ContactStyles from './styles/ContactStyles';
 import Contact from './Contact';
 
+
 export default class ContactList extends Component {
   constructor(props){
     super(props);
 
     this.state = {
-
+      storageData: ''
     }
+  }
+  componentWillMount(){
+    // this.loadStorage()
+
+  }
+  loadStorage(numbers){
+    // console.log(numbers);
+
   }
   closeModal = (ref) => {
     console.log('Modal Closed in Contact list!');
-    console.log(ref);
+    // console.log(ref);
     this.props.contactModalResponse(!this.props.visible);
   }
   render(){
@@ -31,6 +41,8 @@ export default class ContactList extends Component {
 
       let userNumbers = contacts.phoneNumbers.map((numbers) => {
         // console.log(numbers)
+        this.loadStorage(numbers.digits);
+
         if (numbers.label !== "home fax") {
           return [
             <View>
