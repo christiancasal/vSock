@@ -10,6 +10,7 @@ import ButtonStyles from './../loginView/styles/ButtonStyles';
 import InputStyles from './../loginView/styles/InputStyles';
 import ContactList from './ContactList';
 import TabTitle from './../_main/TabTitle';
+import { db } from './../../assets/db/db';
 
 export default class AddRoomModal extends Component {
   constructor(props){
@@ -28,7 +29,10 @@ export default class AddRoomModal extends Component {
     }
   }
   componentWillMount(){
-
+    //clears local storage
+    db.remove({}, { multi: true }, function (err, numRemoved) {
+      console.log('Local storage records removed: ' + numRemoved);
+    });
   }
   setContactModalVisible(visible){
     console.log('Close Modal');

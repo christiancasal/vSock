@@ -7,32 +7,9 @@ import {
   AsyncStorage
 } from 'react-native';
 
-import Storage from 'react-native-storage';
-
-var storage = new Storage({
-    // maximum capacity, default 1000
-    size: 1000,
-
-    // Use AsyncStorage for RN, or window.localStorage for web.
-    // If not set, data would be lost after reload.
-    storageBackend: AsyncStorage,
-
-    // expire time, default 1 day(1000 * 3600 * 24 milliseconds).
-    // can be null, which means never expire.
-    defaultExpires: 1000 * 3600 * 24,
-
-    // cache data in the memory. default is true.
-    enableCache: true,
-
-    // if data was not found in storage or expired,
-    // the corresponding sync method will be invoked and return
-    // the latest data.
-    sync : {
-        // we'll talk about the details later.
-    }
-})
 
 import ContactStyles from './styles/ContactStyles';
+import { db } from './../../assets/db/db';
 
 export default class Contact extends Component {
   constructor(props){
@@ -43,54 +20,42 @@ export default class Contact extends Component {
     }
   }
   componentDidUpdate(){
-    this.sendToLocal();
+    this.checkStatus();
   }
   componentDidMount(){
-    console.log(storage);
+
   }
-  sendToLocal(){
+  componentWillMount(){
 
-    let {name, numberType, numberString, numberValue} = this.props;
-    let {contact, isSwitchOn} = this.state;
-
-
-    if(this.state.isSwitchOn){
-      storage.save({
-          key: 'user',
-          id: numberValue,   // Note: Do not use underscore("_") in id!
-          rawData: contact,
-          expires: 1000 * 60
-      });
-      // load
-      storage.load({
-          key: 'user',
-          id: numberValue,
-          rawData: contact
-      }).then(ret => {
-          // found data goes to then()
-          console.log(storage);
-          console.log(ret.userid);
-      }).catch(err => {
-          // any exception including data not found
-          // goes to catch()
-          console.warn(err.message);
-          switch (err.name) {
-              case 'NotFoundError':
-                  // TODO;
-                  break;
-              case 'ExpiredError':
-                  // TODO
-                  break;
-          }
-      });
+  }
+  checkStatus = () => {
+    let {isSwitchOn} = this.state;
+    if(isSwitchOn){
+      this.saveToLocalStorage();
+      console.log('Contact Saved!');
     }
     else {
-      storage.remove({
-        key: 'user',
-        // key: numberValue,
-        id: numberValue
-      });
+      this.removeFromLocalStorage();
     }
+  }
+  saveToLocalStorage = () => {
+    let {contact, isSwitchOn} = this.state;
+      let doc = {
+        name: contact.name,
+        numberValue: contact.numberValue,
+        numberString: contact.numberString,
+        isSwitchOn: isSwitchOn
+      }
+    db.insert(doc,(err, newDoc)=>{
+      console.log(newDoc);
+    })
+  }
+  removeFromLocalStorage = () => {
+    let {contact, isSwitchOn} = this.state;
+
+    db.remove({ numberValue: contact.numberValue }, { multi: true }, (err, numRemoved) => {
+      console.log('Contacts Removed: ' + numRemoved);
+    });
   }
   toggleContact = () => {
     let {name, numberType, numberString, numberValue} = this.props;
