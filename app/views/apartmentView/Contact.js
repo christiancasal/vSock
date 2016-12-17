@@ -9,7 +9,7 @@ import {
 
 
 import ContactStyles from './styles/ContactStyles';
-import { db } from './../../assets/db/db';
+// import { db } from './../../assets/db/db';
 
 export default class Contact extends Component {
   constructor(props){
@@ -46,16 +46,16 @@ export default class Contact extends Component {
         numberString: contact.numberString,
         isSwitchOn: isSwitchOn
       }
-    db.insert(doc,(err, newDoc)=>{
-      console.log(newDoc);
-    })
+    // db.insert(doc,(err, newDoc)=>{
+    //   console.log(newDoc);
+    // })
   }
   removeFromLocalStorage = () => {
     let {contact, isSwitchOn} = this.state;
 
-    db.remove({ numberValue: contact.numberValue }, { multi: true }, (err, numRemoved) => {
-      console.log('Contacts Removed: ' + numRemoved);
-    });
+    // db.remove({ numberValue: contact.numberValue }, { multi: true }, (err, numRemoved) => {
+    //   console.log('Contacts Removed: ' + numRemoved);
+    // });
   }
   toggleContact = () => {
     let {name, numberType, numberString, numberValue} = this.props;
