@@ -23,6 +23,7 @@
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		AA02D5791D8D0690005472D7 /* GoogleAppUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA02D5781D8D0690005472D7 /* GoogleAppUtilities.framework */; };
+		AA34E5C71E04E9E500F558CC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AA34E5C61E04E9E500F558CC /* GoogleService-Info.plist */; };
 		AA47EBB81D8CD95700882227 /* libRCTFBLogin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AA47EBB71D8CD91900882227 /* libRCTFBLogin.a */; };
 		AA47EBC21D8CE42200882227 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA47EBBF1D8CE42200882227 /* FBSDKCoreKit.framework */; };
 		AA47EBC31D8CE42200882227 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA47EBC01D8CE42200882227 /* FBSDKLoginKit.framework */; };
@@ -172,6 +173,7 @@
 		965E8C2577A342CAD1D1A530 /* libPods-virtualSock.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-virtualSock.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA00BDC61D963FB6002FC5FF /* virtualSock.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = virtualSock.entitlements; path = virtualSock/virtualSock.entitlements; sourceTree = "<group>"; };
 		AA02D5781D8D0690005472D7 /* GoogleAppUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleAppUtilities.framework; path = virtualSock/frameworks/GoogleAppUtilities.framework; sourceTree = "<group>"; };
+		AA34E5C61E04E9E500F558CC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		AA47EBB21D8CD91900882227 /* RCTFBLogin.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTFBLogin.xcodeproj; path = "../node_modules/react-native-facebook-login/RCTFBLogin.xcodeproj"; sourceTree = "<group>"; };
 		AA47EBBF1D8CE42200882227 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = virtualSock/frameworks/FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		AA47EBC01D8CE42200882227 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = virtualSock/frameworks/FBSDKLoginKit.framework; sourceTree = "<group>"; };
@@ -408,6 +410,7 @@
 				AA47EC291D8CF84C00882227 /* GoogleSymbolUtilities.framework */,
 				AA47EC2A1D8CF84C00882227 /* GoogleUtilities.framework */,
 				AA47EC051D8CF2A900882227 /* GoogleService-Info.plist */,
+				AA34E5C61E04E9E500F558CC /* GoogleService-Info.plist */,
 				AA47EBE81D8CED5900882227 /* libz.tbd */,
 				AA47EBE61D8CED4C00882227 /* SystemConfiguration.framework */,
 				AA47EBE41D8CED4000882227 /* SafariServices.framework */,
@@ -720,6 +723,7 @@
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				AA47EC061D8CF2A900882227 /* GoogleService-Info.plist in Resources */,
+				AA34E5C71E04E9E500F558CC /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -946,7 +950,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = virtualSock;
 				PROVISIONING_PROFILE = "";
-				SWIFT_VERSION = 3.0.1;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -983,7 +987,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = virtualSock;
 				PROVISIONING_PROFILE = "";
-				SWIFT_VERSION = 3.0.1;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -1034,6 +1038,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -1076,6 +1081,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_VERSION = 3.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -1090,7 +1096,7 @@
 				00E356F71AD99517003FC87E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "virtualSock" */ = {
 			isa = XCConfigurationList;
@@ -1099,7 +1105,7 @@
 				13B07F951A680F5B00A75B9A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "virtualSock" */ = {
 			isa = XCConfigurationList;
@@ -1108,7 +1114,7 @@
 				83CBBA211A601CBA00E9B192 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 	};
