@@ -38,7 +38,6 @@ export default class Welcome extends Component {
   }
 
   render(){
-    console.log('welcome view!');
 
     let { title0 , title1 , title2 } = this.props;
     let { selectedTab } = this.state;
