@@ -3,6 +3,7 @@ import {
   TextInput,
   View,
   Modal,
+  AsyncStorage
 } from 'react-native';
 
 import SignInButton from './../loginView/SignInButton';
@@ -10,7 +11,7 @@ import ButtonStyles from './../loginView/styles/ButtonStyles';
 import InputStyles from './../loginView/styles/InputStyles';
 import ContactList from './ContactList';
 import TabTitle from './../_main/TabTitle';
-// import { db } from './../../assets/db/db';
+import realm from './../../assets/store/index';
 
 export default class AddRoomModal extends Component {
   constructor(props){
@@ -30,9 +31,9 @@ export default class AddRoomModal extends Component {
   }
   componentWillMount(){
     //clears local storage
-    // db.remove({}, { multi: true }, function (err, numRemoved) {
-    //   console.log('Local storage records removed: ' + numRemoved);
-    // });
+    console.log(realm);
+    console.log('cache cleared!');
+
   }
   setContactModalVisible(visible){
     console.log('Close Modal');
