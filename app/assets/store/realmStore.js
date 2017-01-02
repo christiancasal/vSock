@@ -21,7 +21,8 @@ const realm = new Realm({schema: [contactToAdd]})
 // Retrieves all contacts in sorted(reversed) order
 export const getAllContactsLS = () => {
   const contactsLS = contactToAdd.get().sorted('createdTimestamp', true)
-  return contactsLS
+  console.log(contactsLS);
+  return contactsLS;
 }
 // Adds a new contact to local storage
 export const addContactLS = (obj) => {
@@ -30,7 +31,7 @@ export const addContactLS = (obj) => {
       id: obj.numberValue,
       name: obj.name,
       numberType: obj.numberType,
-      numStringValue: obj.numStringValue,
+      numStringValue: obj.numberString,
       isChosen: obj.isSwitchOn,
       createdTimestamp: new Date()
     })
@@ -49,7 +50,10 @@ export const updateContactLS = (obj, isSwitchOn) => {
 }
 // Deletes a contact from local storage
 export const delContactLS = (obj) => {
+
   realm.write(() => {
-    realm.delete(obj)
+    let rem = realm.objectForPrimaryKey(contactToAdd.schema.name, obj.numberValue)
+    console.log(rem)
+    realm.delete(rem)
   })
 }
