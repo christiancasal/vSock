@@ -30,9 +30,12 @@ export default class AddRoomModal extends Component {
     }
   }
   componentWillMount(){
-    //clears local storage
-    console.log(realm);
-    console.log('cache cleared!');
+    //TODO: clear local storage
+    let data = realm.getAllContactsLS();
+    console.log(data);
+    for(let i = 0; i < data.length; i++){
+      console.log(data[i].createdTimestamp);
+    }
 
   }
   setContactModalVisible(visible){

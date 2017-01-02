@@ -9,6 +9,7 @@ import {
 
 
 import ContactStyles from './styles/ContactStyles';
+import realm from './../../assets/store/index';
 
 export default class Contact extends Component {
   constructor(props){
@@ -43,16 +44,26 @@ export default class Contact extends Component {
     let data = {
       name: contact.name,
       numberValue: contact.numberValue,
+      numberType: contact.numberType,
       numberString: contact.numberString,
       isSwitchOn: isSwitchOn
     }
-
+    realm.addContactLS(data);
 
   }
   removeFromLocalStorage = () => {
     let {contact, isSwitchOn} = this.state;
+    let data = {
+      name: contact.name,
+      numberValue: contact.numberValue,
+      numberType: contact.numberType,
+      numberString: contact.numberString,
+      isSwitchOn: isSwitchOn
+    }
+    realm.delContactLS(data);
 
   }
+
   toggleContact = () => {
     let {name, numberType, numberString, numberValue} = this.props;
     let {contactsClicked} = this.state;
