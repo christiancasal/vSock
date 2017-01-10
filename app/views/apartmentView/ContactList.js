@@ -10,22 +10,33 @@ import SignInButton from './../loginView/SignInButton';
 import ButtonStyles from './../loginView/styles/ButtonStyles';
 import ContactStyles from './styles/ContactStyles';
 import Contact from './Contact';
-
+import realm from './../../assets/store/index';
 
 export default class ContactList extends Component {
   constructor(props){
     super(props);
 
     this.state = {
-      storageData: ''
+      storageData: realm.getAllContactsLS()
     }
   }
   componentWillMount(){
-    // this.loadStorage()
 
   }
-  loadStorage(numbers){
-    // console.log(numbers);
+  checkStorage(numbers){
+    let {storageData} = this.state;
+
+    console.log('this is storage data');
+    console.log(storageData);
+    for (var i = 0; i < storageData.length; i++) {
+      if(storageData[i].numberValue === numbers){
+        console.log('comparison made!');
+        return true;
+      }
+      else{
+        return false;
+      }
+    }
 
   }
   closeModal = (ref) => {
@@ -37,11 +48,12 @@ export default class ContactList extends Component {
     let {contactModalStyle, contactModalTitle} = this.props;
 
     let userContacts = this.props.contacts.map((contacts) => {
-      // console.log(contacts.phoneNumbers);
+      console.log(contacts);
+      console.log(contacts.phoneNumbers);
 
       let userNumbers = contacts.phoneNumbers.map((numbers) => {
-        // console.log(numbers)
-        this.loadStorage(numbers.digits);
+        console.log(numbers)
+        let switchStatus = this.checkStorage(numbers.digits);
 
         if (numbers.label !== "home fax") {
           return [
@@ -50,6 +62,7 @@ export default class ContactList extends Component {
               numberType={numbers.label}
               numberString={numbers.stringValue}
               numberValue={numbers.digits}
+              isActive={switchStatus}
             />
             </View>
           ]
