@@ -16,7 +16,7 @@ export default class Contact extends Component {
     super(props);
     this.state = {
       contact: '',
-      isSwitchOn: false,
+      isSwitchOn: this.props.isActive,
     }
   }
   componentDidUpdate(){
@@ -66,7 +66,6 @@ export default class Contact extends Component {
 
   toggleContact = () => {
     let {name, numberType, numberString, numberValue} = this.props;
-    let {contactsClicked} = this.state;
 
     let obj = {
       name: name,

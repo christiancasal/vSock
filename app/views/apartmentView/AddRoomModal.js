@@ -31,11 +31,7 @@ export default class AddRoomModal extends Component {
   }
   componentWillMount(){
     //TODO: clear local storage
-    let data = realm.getAllContactsLS();
-    console.log(data);
-    for(let i = 0; i < data.length; i++){
-      console.log(data[i].createdTimestamp);
-    }
+    
 
   }
   setContactModalVisible(visible){
@@ -66,7 +62,6 @@ export default class AddRoomModal extends Component {
 
   closeModal = (ref) => {
     console.log('Modal Closed!');
-    console.log(ref);
     this.props.modalResponse(!this.props.visible);
   }
 

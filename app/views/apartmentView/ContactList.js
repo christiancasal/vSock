@@ -10,22 +10,53 @@ import SignInButton from './../loginView/SignInButton';
 import ButtonStyles from './../loginView/styles/ButtonStyles';
 import ContactStyles from './styles/ContactStyles';
 import Contact from './Contact';
-
+import realm from './../../assets/store/index';
 
 export default class ContactList extends Component {
   constructor(props){
     super(props);
-
+    debugger;
     this.state = {
-      storageData: ''
+      storageData: realm.getAllContactsLS(),
+      contactData: this.checkPhoneStorage()
     }
   }
   componentWillMount(){
-    // this.loadStorage()
-
+    console.log(this.state);
+    console.log('this is debuggger in componentWillMount');
+    debugger;
   }
-  loadStorage(numbers){
-    // console.log(numbers);
+  checkPhoneStorage(){
+    let pkg = [];
+    let userContacts = this.props.contacts.map((contacts) => {
+      console.log(contacts.phoneNumbers);
+      let userNumbers = contacts.phoneNumbers.map((numbers) => {
+        let obj = {
+          name: contacts.fullName,
+          numberType: numbers.label,
+          numberString: numbers.stringValue,
+          numberValue: numbers.digits,
+          isActive: false
+        }
+        if (numbers.label !== "home fax") {
+          pkg.push(obj)
+        }
+      })
+      console.log(pkg);
+    })
+    return pkg
+  }
+  checkStorage(numbers){
+    let {storageData} = this.state;
+    for (var i = 0; i < storageData.length; i++) {
+      if(storageData[i].numberValue === numbers){
+        console.log('comparison made!');
+        return true;
+      }
+      else{
+        return false;
+      }
+    }
 
   }
   closeModal = (ref) => {
@@ -37,11 +68,8 @@ export default class ContactList extends Component {
     let {contactModalStyle, contactModalTitle} = this.props;
 
     let userContacts = this.props.contacts.map((contacts) => {
-      // console.log(contacts.phoneNumbers);
-
       let userNumbers = contacts.phoneNumbers.map((numbers) => {
-        // console.log(numbers)
-        this.loadStorage(numbers.digits);
+        let switchStatus = this.checkStorage(numbers.digits);
 
         if (numbers.label !== "home fax") {
           return [
@@ -50,6 +78,7 @@ export default class ContactList extends Component {
               numberType={numbers.label}
               numberString={numbers.stringValue}
               numberValue={numbers.digits}
+              isActive={switchStatus}
             />
             </View>
           ]

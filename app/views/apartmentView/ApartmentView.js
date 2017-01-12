@@ -40,8 +40,6 @@ export default class ApartmentView extends Component {
     });
   }
   addRoom = (ref) => {
-    console.log(ref);
-    console.log('this is add room');
     Contacts.userCanAccessContacts( (userCanAccessContacts) => {
       if (userCanAccessContacts) {
         this.setState({

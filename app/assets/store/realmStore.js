@@ -20,9 +20,22 @@ const realm = new Realm({schema: [contactToAdd]})
 
 // Retrieves all contacts in sorted(reversed) order
 export const getAllContactsLS = () => {
-  const contactsLS = contactToAdd.get().sorted('createdTimestamp', true)
-  console.log(contactsLS);
-  return contactsLS;
+  let contactsLS = contactToAdd.get();
+
+  let pkg = [];
+
+  contactsLS.map((contacts) => {
+    let obj = {
+      name: contacts.name,
+      numberValue: contacts.id,
+      numberString: contacts.numStringValue,
+      numberType: contacts.numberType,
+      isChosen: contacts.isChosen,
+      createdTimestamp: contacts.createdTimestamp
+    }
+    pkg.push(obj)
+  })
+  return pkg
 }
 // Adds a new contact to local storage
 export const addContactLS = (obj) => {
