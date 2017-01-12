@@ -31,10 +31,7 @@ export default class AddRoomModal extends Component {
   }
   componentWillMount(){
     //TODO: clear local storage
-    let data = realm.getAllContactsLS();
-    console.log(data);
-  }
-  checkLocalStorage = () =>{
+    
 
   }
   setContactModalVisible(visible){
@@ -65,7 +62,6 @@ export default class AddRoomModal extends Component {
 
   closeModal = (ref) => {
     console.log('Modal Closed!');
-    console.log(ref);
     this.props.modalResponse(!this.props.visible);
   }
 
@@ -107,7 +103,6 @@ export default class AddRoomModal extends Component {
     let checkRoom = this.roomSaved();
     let checkContacts = this.displayContactsButton();
     let roomConfirm = this.displayRoomConfirm();
-    let checkLocalData = this.checkLocalStorage();
 
     return(
       <View style={this.props.modalStyle.container}>

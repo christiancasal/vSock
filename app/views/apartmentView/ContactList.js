@@ -15,19 +15,39 @@ import realm from './../../assets/store/index';
 export default class ContactList extends Component {
   constructor(props){
     super(props);
-
+    debugger;
     this.state = {
-      storageData: realm.getAllContactsLS()
+      storageData: realm.getAllContactsLS(),
+      contactData: this.checkPhoneStorage()
     }
   }
   componentWillMount(){
-
+    console.log(this.state);
+    console.log('this is debuggger in componentWillMount');
+    debugger;
+  }
+  checkPhoneStorage(){
+    let pkg = [];
+    let userContacts = this.props.contacts.map((contacts) => {
+      console.log(contacts.phoneNumbers);
+      let userNumbers = contacts.phoneNumbers.map((numbers) => {
+        let obj = {
+          name: contacts.fullName,
+          numberType: numbers.label,
+          numberString: numbers.stringValue,
+          numberValue: numbers.digits,
+          isActive: false
+        }
+        if (numbers.label !== "home fax") {
+          pkg.push(obj)
+        }
+      })
+      console.log(pkg);
+    })
+    return pkg
   }
   checkStorage(numbers){
     let {storageData} = this.state;
-
-    console.log('this is storage data');
-    console.log(storageData);
     for (var i = 0; i < storageData.length; i++) {
       if(storageData[i].numberValue === numbers){
         console.log('comparison made!');
@@ -48,11 +68,7 @@ export default class ContactList extends Component {
     let {contactModalStyle, contactModalTitle} = this.props;
 
     let userContacts = this.props.contacts.map((contacts) => {
-      console.log(contacts);
-      console.log(contacts.phoneNumbers);
-
       let userNumbers = contacts.phoneNumbers.map((numbers) => {
-        console.log(numbers)
         let switchStatus = this.checkStorage(numbers.digits);
 
         if (numbers.label !== "home fax") {
