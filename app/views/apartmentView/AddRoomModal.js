@@ -32,7 +32,6 @@ export default class AddRoomModal extends Component {
   componentWillMount(){
     //TODO: clear local storage
     
-
   }
   setContactModalVisible(visible){
     console.log('Close Modal');
