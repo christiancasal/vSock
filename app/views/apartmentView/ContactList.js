@@ -15,19 +15,18 @@ import realm from './../../assets/store/index';
 export default class ContactList extends Component {
   constructor(props){
     super(props);
-    debugger;
     this.state = {
-      storageData: realm.getAllContactsLS(),
-      contactData: this.checkPhoneStorage()
+      contactData: this.checkPhoneStorage(),
     }
+
   }
   componentWillMount(){
-    console.log(this.state);
-    console.log('this is debuggger in componentWillMount');
-    debugger;
+
   }
   checkPhoneStorage(){
-    let pkg = [];
+    let storageData = realm.getAllContactsLS();
+
+    let internalContacts = [];
     let userContacts = this.props.contacts.map((contacts) => {
       console.log(contacts.phoneNumbers);
       let userNumbers = contacts.phoneNumbers.map((numbers) => {
@@ -39,25 +38,22 @@ export default class ContactList extends Component {
           isActive: false
         }
         if (numbers.label !== "home fax") {
-          pkg.push(obj)
+          internalContacts.push(obj)
         }
       })
-      console.log(pkg);
     })
-    return pkg
+    let activeContacts = this.checkForActiveContacts(storageData, internalContacts);
+    return activeContacts;
   }
-  checkStorage(numbers){
-    let {storageData} = this.state;
+  checkForActiveContacts(storageData, contactData){
     for (var i = 0; i < storageData.length; i++) {
-      if(storageData[i].numberValue === numbers){
-        console.log('comparison made!');
-        return true;
-      }
-      else{
-        return false;
+      for (var j = 0; j < contactData.length; j++) {
+        if(storageData[i].numberValue === contactData[j].numberValue){
+          contactData[j].isActive = true;
+        }
       }
     }
-
+    return contactData;
   }
   closeModal = (ref) => {
     console.log('Modal Closed in Contact list!');
@@ -66,27 +62,17 @@ export default class ContactList extends Component {
   }
   render(){
     let {contactModalStyle, contactModalTitle} = this.props;
+    let {contactData} = this.state;
 
-    let userContacts = this.props.contacts.map((contacts) => {
-      let userNumbers = contacts.phoneNumbers.map((numbers) => {
-        let switchStatus = this.checkStorage(numbers.digits);
-
-        if (numbers.label !== "home fax") {
-          return [
-            <View>
-              <Contact contactStyle={contactModalStyle}              name={contacts.fullName}
-              numberType={numbers.label}
-              numberString={numbers.stringValue}
-              numberValue={numbers.digits}
-              isActive={switchStatus}
-            />
-            </View>
-          ]
-        }
-      })
+    let userNumbers = contactData.map((data) => {
       return [
         <View>
-          {userNumbers}
+          <Contact contactStyle={contactModalStyle}              name={data.name}
+          numberType={data.numberType}
+          numberString={data.numberString}
+          numberValue={data.numberValue}
+          isActive={data.isActive}
+        />
         </View>
       ]
     })
@@ -97,7 +83,7 @@ export default class ContactList extends Component {
           {contactModalTitle}
         </View>
         <ScrollView style={contactModalTitle.colContainer}>
-          {userContacts}
+          {userNumbers}
         </ScrollView>
         <View style={ContactStyles.clCloseContainer}>
           <SignInButton type='esc' buttonStyle={ButtonStyles.escButton} buttonText='Close' response={(ref)=>this.closeModal(ref)}/>
