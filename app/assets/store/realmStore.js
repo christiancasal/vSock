@@ -70,3 +70,9 @@ export const delContactLS = (obj) => {
     realm.delete(rem)
   })
 }
+//clears all contacts in local storage
+export const deleteAll = () => {
+  realm.write(() => {
+    realm.deleteAll()
+  })
+}

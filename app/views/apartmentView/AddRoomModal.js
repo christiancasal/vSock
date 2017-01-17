@@ -31,10 +31,10 @@ export default class AddRoomModal extends Component {
   }
   componentWillMount(){
     //TODO: clear local storage
-
+    this.clearLocalStorage();
   }
   clearLocalStorage(){
-
+    realm.deleteAll();
   }
   setContactModalVisible(visible){
     console.log('Close Modal');
