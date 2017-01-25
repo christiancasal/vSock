@@ -28,7 +28,7 @@ export default class ContactList extends Component {
 
     let internalContacts = [];
     let userContacts = this.props.contacts.map((contacts) => {
-      console.log(contacts.phoneNumbers);
+      // console.log(contacts.phoneNumbers);
       let userNumbers = contacts.phoneNumbers.map((numbers) => {
         let obj = {
           name: contacts.fullName,

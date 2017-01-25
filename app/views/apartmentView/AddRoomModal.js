@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import {
   TextInput,
   View,
+  Text,
   Modal,
-  AsyncStorage
 } from 'react-native';
 
 import SignInButton from './../loginView/SignInButton';
 import ButtonStyles from './../loginView/styles/ButtonStyles';
 import InputStyles from './../loginView/styles/InputStyles';
+import ContactStyles from './styles/ContactStyles';
 import ContactList from './ContactList';
 import TabTitle from './../_main/TabTitle';
 import realm from './../../assets/store/index';
@@ -38,9 +39,20 @@ export default class AddRoomModal extends Component {
   }
   setContactModalVisible(visible){
     console.log('Close Modal');
-    this.setState({
-      modalVisible: visible,
-    })
+    let storageData = realm.getAllContactsLS();
+    if(storageData.length === 0){
+      this.setState({
+        roomConfirm: false,
+        showNext: false,
+        modalVisible: visible,
+      })
+    }
+    else{
+      this.setState({
+        roomConfirm: true,
+        modalVisible: visible,
+      })
+    }
   }
   validate_room = (roomName) => {
     let roomVal = /^[a-zA-Z0-9]{4,15}$/;
@@ -84,9 +96,13 @@ export default class AddRoomModal extends Component {
   displayRoomConfirm = () => {
     if(this.state.roomConfirm){
       return(
-        <SignInButton type='addRoomConfirm' buttonStyle={ButtonStyles.addRoomButton} buttonText='Add Room!' response={(ref)=>this.closeModal(ref)}/>
+        <SignInButton type='addRoomConfirm' buttonStyle={ButtonStyles.addRoomButton} buttonText='Add Room!' response={(ref)=>this.sendToFirebase(ref)}/>
       )
     }
+  }
+  sendToFirebase = (ref) => {
+    //TODO: send storageData selected to firebase 
+    this.closeModal(ref);
   }
   displayContactsButton = () => {
     if(this.state.showContacts){
@@ -94,6 +110,37 @@ export default class AddRoomModal extends Component {
         <SignInButton type='Contacts' buttonStyle={ButtonStyles.addRoomButton} buttonText='Contacts' response={(ref)=>this.displayContacts(ref)}/>
       )
     }
+  }
+  displayLocalStorage = () => {
+    let {roomName, showContacts, validRoom} = this.state;
+
+    let storageData = realm.getAllContactsLS();
+    if(storageData.length === 0){
+      return [
+        <TextInput style={InputStyles.inputBox}
+          placeholder={roomName}
+          onChangeText={(roomName) => this.validate_room(roomName)}
+          autoCorrect={false}
+          autoCapitalize="none"
+        />
+      ];
+    }
+    let storageView = storageData.map((data)=>{
+      console.log(data);
+      console.log(data.name);
+      return [
+        <View>
+          <Text>{data.name}</Text>
+          <Text>{data.numberValue}</Text>
+        </View>
+      ]
+    })
+    return [
+      <View>
+        <Text>{roomName}</Text>
+        {storageView}
+      </View>
+    ]
   }
   displayContacts = () => {
     this.setState({
@@ -105,23 +152,19 @@ export default class AddRoomModal extends Component {
     let checkRoom = this.roomSaved();
     let checkContacts = this.displayContactsButton();
     let roomConfirm = this.displayRoomConfirm();
+    let storageData = this.displayLocalStorage();
 
     return(
       <View style={this.props.modalStyle.container}>
          <View style={this.props.modalTitleStyle}>
            {this.props.modalTitle}
          </View>
-         <View style={this.props.modalStyle.colContainer}>
 
-           <TextInput style={InputStyles.inputBox}
-             placeholder={roomName}
-             onChangeText={(roomName) => this.validate_room(roomName)}
-             autoCorrect={false}
-             autoCapitalize="none"
-           />
+         <View style={this.props.modalStyle.colContainer}>
+           {storageData}
            {checkRoom}
-           {checkContacts}
            {roomConfirm}
+           {checkContacts}
            <SignInButton type='esc' buttonStyle={ButtonStyles.escButton} buttonText='Close' response={(ref)=>this.closeModal(ref)}/>
            <Modal
              animationType={this.state.animationType}
