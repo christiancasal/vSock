@@ -7,11 +7,13 @@ import {
 } from 'react-native';
 
 import SignInButton from './../loginView/SignInButton';
+import ContactToConfirm from './ContactToConfirm';
 import ButtonStyles from './../loginView/styles/ButtonStyles';
 import InputStyles from './../loginView/styles/InputStyles';
 import ContactStyles from './styles/ContactStyles';
 import ContactList from './ContactList';
 import TabTitle from './../_main/TabTitle';
+import ApartmentViewStyles from './styles/ApartmentViewStyles';
 import realm from './../../assets/store/index';
 
 export default class AddRoomModal extends Component {
@@ -96,12 +98,12 @@ export default class AddRoomModal extends Component {
   displayRoomConfirm = () => {
     if(this.state.roomConfirm){
       return(
-        <SignInButton type='addRoomConfirm' buttonStyle={ButtonStyles.addRoomButton} buttonText='Add Room!' response={(ref)=>this.sendToFirebase(ref)}/>
+        <SignInButton type='addRoomConfirm' buttonStyle={ButtonStyles.addRoomButton} buttonText='Confirm!' response={(ref)=>this.sendToFirebase(ref)}/>
       )
     }
   }
   sendToFirebase = (ref) => {
-    //TODO: send storageData selected to firebase 
+    //TODO: send storageData selected to firebase
     this.closeModal(ref);
   }
   displayContactsButton = () => {
@@ -126,19 +128,19 @@ export default class AddRoomModal extends Component {
       ];
     }
     let storageView = storageData.map((data)=>{
-      console.log(data);
-      console.log(data.name);
       return [
         <View>
-          <Text>{data.name}</Text>
-          <Text>{data.numberValue}</Text>
+          <ContactToConfirm contactName={data.name} contactNumber={data.numberValue}/>
         </View>
       ]
     })
     return [
-      <View>
-        <Text>{roomName}</Text>
-        {storageView}
+      <View style={ApartmentViewStyles.contactContainer}>
+          <Text style={ApartmentViewStyles.titleText}>You are adding...</Text>
+        <View style={ApartmentViewStyles.contactContainer}>
+          {storageView}
+        </View>
+        <Text style={ApartmentViewStyles.titleText}>to {roomName}!</Text>
       </View>
     ]
   }
@@ -160,7 +162,7 @@ export default class AddRoomModal extends Component {
            {this.props.modalTitle}
          </View>
 
-         <View style={this.props.modalStyle.colContainer}>
+         <View style={ApartmentViewStyles.colContainer}>
            {storageData}
            {checkRoom}
            {roomConfirm}
