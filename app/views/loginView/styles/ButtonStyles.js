@@ -90,8 +90,8 @@ export default StyleSheet.create({
     width: 240,
     height: 50,
     borderRadius: 5,
-    marginTop: 10,
-    marginBottom: 10,
+    marginTop: 5,
+    marginBottom: 5,
     justifyContent:'center',
     alignItems: 'center'
   },
