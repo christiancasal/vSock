@@ -57,10 +57,10 @@ export default class UserHandling extends Component{
       forgotPWText: 'Forgot Password?',
       validEmail: false,
       validEmailText: '',
-      user: true,
-      loggedIn: true,
-      // user: false,
-      // loggedIn: false,
+      // user: true,
+      // loggedIn: true,
+      user: false,
+      loggedIn: false,
     }
     this.itemsRef = firebaseApp.database().ref();
   }
